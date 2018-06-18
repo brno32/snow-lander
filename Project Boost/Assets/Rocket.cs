@@ -27,6 +27,25 @@ public class Rocket : MonoBehaviour {
         Rotate();
 	}
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                print("Friendly landing pad.");
+                break;
+            case "Enemy":
+                print("Enemy landing pad.");
+                break;
+            case "Fuel":
+                print("Fuel landing pad.");
+                break;
+            default:
+                print("Game Over");
+                break;
+        }
+    }
+
     private void Rotate()
     {
         rigidBody.freezeRotation = true;
@@ -34,7 +53,7 @@ public class Rocket : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
-            print("Rotation canceled");
+            // Do nothing if both keys pressed at once
         }
         else if (Input.GetKey(KeyCode.A))
         {
@@ -54,7 +73,6 @@ public class Rocket : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Space))
         {
-            print("Thrusting");
             rigidBody.AddRelativeForce(Vector3.up * thrustThisFrame);
             if (!audioSource.isPlaying)
             {
