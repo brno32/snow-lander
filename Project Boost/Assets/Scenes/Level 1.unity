@@ -262,6 +262,21 @@ Prefab:
       propertyPath: m_Drag
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 54995087449434372, guid: ecc979df38d84304c8b6c654ccc39fb8,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507489708359222, guid: ecc979df38d84304c8b6c654ccc39fb8,
+        type: 2}
+      propertyPath: mainThrust
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 54995087449434372, guid: ecc979df38d84304c8b6c654ccc39fb8,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
   m_IsPrefabParent: 0
