@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
     Rigidbody rigidBody;
     AudioSource audioSource;
+
+    private int currentLvl = 0;
 
     [SerializeField]
     float mainThrust = 100f;
@@ -17,8 +17,8 @@ public class Rocket : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
-
         audioSource = GetComponent<AudioSource>();
+        currentLvl = SceneManager.GetActiveScene().buildIndex;
     }
 	
 	// Update is called once per frame
@@ -34,14 +34,12 @@ public class Rocket : MonoBehaviour {
             case "Friendly":
                 print("Friendly landing pad.");
                 break;
-            case "Enemy":
-                print("Enemy landing pad.");
-                break;
-            case "Fuel":
-                print("Fuel landing pad.");
+            case "Finish":
+                print("Finished!");
+                SceneManager.LoadScene(currentLvl + 1);
                 break;
             default:
-                print("Game Over");
+                SceneManager.LoadScene(currentLvl);
                 break;
         }
     }
