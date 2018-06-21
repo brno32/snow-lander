@@ -57,22 +57,31 @@ public class Rocket : MonoBehaviour {
         switch (collision.gameObject.tag)
         {
             case "Friendly":
-                print("Friendly landing pad.");
                 break;
             case "Finish":
-                state = State.Transcending;
-                rigidBody.constraints = RigidbodyConstraints.FreezeAll;
-                audioSource.Stop();
-                Invoke("LoadNextScene", 2f);
-                audioSource.PlayOneShot(winSound);
+                StartWinSequence();
                 break;
             default:
-                state = State.Dead;
-                audioSource.Stop();
-                Invoke("LoadCurrentScene", 2f);
-                audioSource.PlayOneShot(deathSound);
+                StartDeathSequence();
                 break;
         }
+    }
+
+    private void StartWinSequence()
+    {
+        state = State.Transcending;
+        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        audioSource.Stop();
+        Invoke("LoadNextScene", 2f);
+        audioSource.PlayOneShot(winSound);
+    }
+
+    private void StartDeathSequence()
+    {
+        state = State.Dead;
+        audioSource.Stop();
+        Invoke("LoadCurrentScene", 2f);
+        audioSource.PlayOneShot(deathSound);
     }
 
     private void LoadCurrentScene()
@@ -82,7 +91,14 @@ public class Rocket : MonoBehaviour {
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(currentLvl + 1);
+        if (currentLvl < SceneManager.sceneCount)
+        {
+            SceneManager.LoadScene(currentLvl + 1);
+        }
+        else
+        {
+            print("No more levels. You win!");
+        }
     }
 
     private void RespondToRotateInput()
