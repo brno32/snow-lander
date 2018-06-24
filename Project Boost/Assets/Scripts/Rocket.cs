@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
@@ -23,7 +24,9 @@ public class Rocket : MonoBehaviour {
 
     public State state;
 
-    private int currentLvl = 0; 
+    private int currentLvl = 0;
+
+    private bool collisionsOff = false;
 
     // Use this for initialization
     void Start () {
@@ -43,11 +46,33 @@ public class Rocket : MonoBehaviour {
         
         RespondToThrustInput();
         RespondToRotateInput();
+
+        if (Debug.isDebugBuild)
+        {
+            RespondToDebugInput();
+        }
 	}
+
+    private void RespondToDebugInput()
+    {
+        if (Input.GetKey(KeyCode.L))
+        {
+            LoadNextScene();
+        }
+        if ((Input.GetKey(KeyCode.C)))
+        {
+            collisionsOff = !collisionsOff;
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (state != State.Alive)
+        {
+            return;
+        }
+
+        if (collisionsOff)
         {
             return;
         }
