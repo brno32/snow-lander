@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
+    public float loadLevelDelay = 1f;
+
     public float mainThrust = 100f;
     public float rcsThrust = 100f;
 
@@ -69,7 +71,7 @@ public class Rocket : MonoBehaviour {
         rigidBody.constraints = RigidbodyConstraints.FreezeAll;
         audioSource.Stop();
         winParticles.Play();
-        Invoke("LoadNextScene", 2f);
+        Invoke("LoadNextScene", loadLevelDelay);
         audioSource.PlayOneShot(winSound);
     }
 
@@ -77,8 +79,9 @@ public class Rocket : MonoBehaviour {
     {
         state = State.Dead;
         audioSource.Stop();
+        mainEngineParticles.Stop();
         deathParticles.Play();
-        Invoke("LoadCurrentScene", 2f);
+        Invoke("LoadCurrentScene", loadLevelDelay);
         audioSource.PlayOneShot(deathSound);
     }
 
