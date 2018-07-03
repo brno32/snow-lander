@@ -1,49 +1,37 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class Rocket : MonoBehaviour {
 
-    public float loadLevelDelay = 1f;
-
-    public float mainThrust = 100f;
-    public float rcsThrust = 100f;
-
-    public AudioClip mainEngine;
-    public AudioClip winSound;
-    public AudioClip deathSound;
-
-    public ParticleSystem mainEngineParticles;
-    public ParticleSystem winParticles;
-    public ParticleSystem deathParticles;
+    public float mainThrust = 1000f;
+    public float torque = 175f;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    public enum State { Alive, Transcending, Dead };
+    public enum GameState { Alive, Transcending, Dead };
+    static public GameState currentGameState;
 
-    public State state;
+    public ParticleSystem mainEngineParticles, winParticles, deathParticles;
 
-    private int currentLvl = 0;
+    public AudioClip mainEngine, winSound, deathSound;
 
     private bool collisionsOff = false;
 
     // Use this for initialization
     void Start () {
+        currentGameState = GameState.Alive;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        currentLvl = SceneManager.GetActiveScene().buildIndex;
-        state = State.Alive;
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (state != State.Alive)
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameMaster.currentGameState != GameMaster.GameState.Alive)
         {
             return;
         }
-        
+
         RespondToThrustInput();
         RespondToRotateInput();
 
@@ -51,23 +39,11 @@ public class Rocket : MonoBehaviour {
         {
             RespondToDebugInput();
         }
-	}
-
-    private void RespondToDebugInput()
-    {
-        if (Input.GetKey(KeyCode.L))
-        {
-            LoadNextScene();
-        }
-        if ((Input.GetKey(KeyCode.C)))
-        {
-            collisionsOff = !collisionsOff;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive)
+        if (GameMaster.currentGameState != GameMaster.GameState.Alive)
         {
             return;
         }
@@ -82,55 +58,20 @@ public class Rocket : MonoBehaviour {
             case "Friendly":
                 break;
             case "Finish":
-                StartWinSequence();
+                GameMaster.currentGameState = GameMaster.GameState.Transcending;
+                HandleWinEffects();
                 break;
             default:
-                StartDeathSequence();
+                GameMaster.currentGameState = GameMaster.GameState.Dead;
+                HandleLoseEffects();
                 break;
-        }
-    }
-
-    private void StartWinSequence()
-    {
-        state = State.Transcending;
-        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
-        audioSource.Stop();
-        winParticles.Play();
-        Invoke("LoadNextScene", loadLevelDelay);
-        audioSource.PlayOneShot(winSound);
-    }
-
-    private void StartDeathSequence()
-    {
-        state = State.Dead;
-        audioSource.Stop();
-        mainEngineParticles.Stop();
-        deathParticles.Play();
-        Invoke("LoadCurrentScene", loadLevelDelay);
-        audioSource.PlayOneShot(deathSound);
-    }
-
-    private void LoadCurrentScene()
-    {
-        SceneManager.LoadScene(currentLvl);
-    }
-
-    private void LoadNextScene()
-    {
-        if (currentLvl < SceneManager.sceneCountInBuildSettings - 1)
-        {
-            SceneManager.LoadScene(currentLvl + 1);
-        }
-        else
-        {
-            print("No more levels. You win!");
         }
     }
 
     private void RespondToRotateInput()
     {
         rigidBody.freezeRotation = true;
-        float rotationThisFrame = rcsThrust * Time.deltaTime;
+        float rotationThisFrame = torque * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
@@ -149,16 +90,35 @@ public class Rocket : MonoBehaviour {
     }
 
     private void RespondToThrustInput()
-    {   
+    {
+        print("Thrust printed");
         if (Input.GetKey(KeyCode.Space))
         {
             ApplyThrust();
+            print("Thrust called");
         }
         else
         {
             audioSource.Stop();
             mainEngineParticles.Stop();
         }
+    }
+
+    private void RespondToDebugInput()
+    {
+        if (Input.GetKey(KeyCode.L))
+        {
+            //sceneLoaderScript.LoadNextScene();
+        }
+        if ((Input.GetKey(KeyCode.C)))
+        {
+            collisionsOff = !collisionsOff;
+        }
+    }
+
+    public void FreezePlayerInput()
+    {
+        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void ApplyThrust()
@@ -171,5 +131,23 @@ public class Rocket : MonoBehaviour {
             audioSource.PlayOneShot(mainEngine);
         }
         mainEngineParticles.Play();
+    }
+
+    public void HandleWinEffects()
+    {
+        audioSource.Stop();
+        FreezePlayerInput();
+        mainEngineParticles.Stop();
+        winParticles.Play();
+        audioSource.PlayOneShot(winSound);
+    }
+
+    public void HandleLoseEffects()
+    {
+        FreezePlayerInput();
+        audioSource.Stop();
+        mainEngineParticles.Stop();
+        deathParticles.Play();
+        audioSource.PlayOneShot(deathSound);
     }
 }
