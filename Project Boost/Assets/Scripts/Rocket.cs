@@ -12,7 +12,7 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    public ParticleSystem mainEngineParticles, winParticles, deathParticles;
+    public ParticleSystem thrustParticles, winParticles, deathParticles;
 
     public AudioClip mainEngine, winSound, deathSound;
 
@@ -63,7 +63,7 @@ public class Rocket : MonoBehaviour {
                 break;
             default:
                 GameMaster.currentGameState = GameMaster.GameState.Dead;
-                PlayLoseEffects();
+                PlayDeathEffects();
                 break;
         }
     }
@@ -95,7 +95,7 @@ public class Rocket : MonoBehaviour {
         else
         {
             audioSource.Stop();
-            mainEngineParticles.Stop();
+            thrustParticles.Stop();
         }
     }
 
@@ -125,23 +125,23 @@ public class Rocket : MonoBehaviour {
         {
             audioSource.PlayOneShot(mainEngine);
         }
-        mainEngineParticles.Play();
+        thrustParticles.Play();
     }
 
     public void PlayWinEffects()
     {
-        audioSource.Stop();
         FreezePlayerInput();
-        mainEngineParticles.Stop();
+        audioSource.Stop();
+        thrustParticles.Stop();
         winParticles.Play();
         audioSource.PlayOneShot(winSound);
     }
 
-    public void PlayLoseEffects()
+    public void PlayDeathEffects()
     {
         FreezePlayerInput();
         audioSource.Stop();
-        mainEngineParticles.Stop();
+        thrustParticles.Stop();
         deathParticles.Play();
         audioSource.PlayOneShot(deathSound);
     }

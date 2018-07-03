@@ -602,7 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainThrust: 1000
   torque: 175
-  mainEngineParticles: {fileID: 198473479583394784}
+  thrustParticles: {fileID: 198473479583394784}
   winParticles: {fileID: 198900178949807708}
   deathParticles: {fileID: 198823066878615650}
   mainEngine: {fileID: 8300000, guid: a38bd7da03256cd4bbb2ab608021c2d7, type: 3}
