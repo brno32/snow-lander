@@ -8,9 +8,6 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    public enum GameState { Alive, Transcending, Dead };
-    static public GameState currentGameState;
-
     public ParticleSystem mainEngineParticles, winParticles, deathParticles;
 
     public AudioClip mainEngine, winSound, deathSound;
@@ -19,7 +16,6 @@ public class Rocket : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        currentGameState = GameState.Alive;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
