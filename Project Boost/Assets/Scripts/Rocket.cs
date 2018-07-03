@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Rocket : MonoBehaviour {
 
@@ -33,7 +37,7 @@ public class Rocket : MonoBehaviour {
 
         if (Debug.isDebugBuild)
         {
-            RespondToDebugInput();
+            //RespondToDebugInput();
         }
     }
 
@@ -55,11 +59,11 @@ public class Rocket : MonoBehaviour {
                 break;
             case "Finish":
                 GameMaster.currentGameState = GameMaster.GameState.Transcending;
-                HandleWinEffects();
+                PlayWinEffects();
                 break;
             default:
                 GameMaster.currentGameState = GameMaster.GameState.Dead;
-                HandleLoseEffects();
+                PlayLoseEffects();
                 break;
         }
     }
@@ -67,31 +71,26 @@ public class Rocket : MonoBehaviour {
     private void RespondToRotateInput()
     {
         rigidBody.freezeRotation = true;
-        float rotationThisFrame = torque * Time.deltaTime;
+        
+        // +1 when thrown right. -1 when thrown left
+        float zThrow = CrossPlatformInputManager.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
-        {
-            // Do nothing if both keys pressed at once
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.forward * rotationThisFrame);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(Vector3.back * rotationThisFrame);
-        }
+        // Result is ordinarily positive, meaning counter-clockwise
+        // When pressing right, you want to move clock-wise
+        float rotationThisFrame = - torque * zThrow * Time.deltaTime;
+        
+        transform.Rotate(Vector3.forward * rotationThisFrame);
 
         rigidBody.freezeRotation = false;
     }
 
     private void RespondToThrustInput()
     {
-        print("Thrust printed");
-        if (Input.GetKey(KeyCode.Space))
+        float thrustOn = CrossPlatformInputManager.GetAxis("Thrust");
+
+        if (thrustOn > 0)
         {
             ApplyThrust();
-            print("Thrust called");
         }
         else
         {
@@ -100,17 +99,17 @@ public class Rocket : MonoBehaviour {
         }
     }
 
-    private void RespondToDebugInput()
-    {
-        if (Input.GetKey(KeyCode.L))
-        {
-            //sceneLoaderScript.LoadNextScene();
-        }
-        if ((Input.GetKey(KeyCode.C)))
-        {
-            collisionsOff = !collisionsOff;
-        }
-    }
+    //private void RespondToDebugInput()
+    //{
+    //    if (Input.GetKey(KeyCode.L))
+    //    {
+    //        //sceneLoaderScript.LoadNextScene();
+    //    }
+    //    if ((Input.GetKey(KeyCode.C)))
+    //    {
+    //        collisionsOff = !collisionsOff;
+    //    }
+    //}
 
     public void FreezePlayerInput()
     {
@@ -129,7 +128,7 @@ public class Rocket : MonoBehaviour {
         mainEngineParticles.Play();
     }
 
-    public void HandleWinEffects()
+    public void PlayWinEffects()
     {
         audioSource.Stop();
         FreezePlayerInput();
@@ -138,7 +137,7 @@ public class Rocket : MonoBehaviour {
         audioSource.PlayOneShot(winSound);
     }
 
-    public void HandleLoseEffects()
+    public void PlayLoseEffects()
     {
         FreezePlayerInput();
         audioSource.Stop();
