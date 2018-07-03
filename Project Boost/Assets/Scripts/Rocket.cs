@@ -12,21 +12,25 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    public ParticleSystem thrustParticles, winParticles, deathParticles;
+    new Renderer renderer;
 
+    public ParticleSystem thrustParticles, winParticles, deathParticles;
     public AudioClip mainEngine, winSound, deathSound;
 
-    private bool collisionsOff = false;
+    private float elapsedTime = 0;
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        renderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        elapsedTime += Time.deltaTime;
+
         if (GameMaster.currentGameState != GameMaster.GameState.Alive)
         {
             return;
@@ -35,20 +39,16 @@ public class Rocket : MonoBehaviour {
         RespondToThrustInput();
         RespondToRotateInput();
 
-        if (Debug.isDebugBuild)
+        if (!renderer.isVisible && elapsedTime > 2f)
         {
-            //RespondToDebugInput();
+            GameMaster.currentGameState = GameMaster.GameState.Dead;
+            PlayDeathEffects();
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (GameMaster.currentGameState != GameMaster.GameState.Alive)
-        {
-            return;
-        }
-
-        if (collisionsOff)
         {
             return;
         }
@@ -86,9 +86,9 @@ public class Rocket : MonoBehaviour {
 
     private void RespondToThrustInput()
     {
-        float thrustOn = CrossPlatformInputManager.GetAxis("Thrust");
+        float thrustInput = CrossPlatformInputManager.GetAxis("Thrust");
 
-        if (thrustOn > 0)
+        if (thrustInput > 0)
         {
             ApplyThrust();
         }
@@ -98,18 +98,6 @@ public class Rocket : MonoBehaviour {
             thrustParticles.Stop();
         }
     }
-
-    //private void RespondToDebugInput()
-    //{
-    //    if (Input.GetKey(KeyCode.L))
-    //    {
-    //        //sceneLoaderScript.LoadNextScene();
-    //    }
-    //    if ((Input.GetKey(KeyCode.C)))
-    //    {
-    //        collisionsOff = !collisionsOff;
-    //    }
-    //}
 
     public void FreezePlayerInput()
     {
