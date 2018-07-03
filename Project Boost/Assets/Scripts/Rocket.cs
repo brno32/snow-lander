@@ -6,31 +6,36 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Rocket : MonoBehaviour {
 
+    // EXTERNAL COMPONENTS
+    Rigidbody rigidBody;
+    AudioSource audioSource;
+    new Renderer renderer;
+
+    [Header("Controller Parameters")]
     public float mainThrust = 1000f;
     public float torque = 175f;
 
-    Rigidbody rigidBody;
-    AudioSource audioSource;
+    [Header("Particle Effects")]
+    public ParticleSystem thrustParticles;
+    public ParticleSystem winParticles;
+    public ParticleSystem deathParticles;
 
-    new Renderer renderer;
+    [Header("Sound Effects")]
+    public AudioClip mainEngine;
+    public AudioClip winSound;
+    public AudioClip deathSound;
 
-    public ParticleSystem thrustParticles, winParticles, deathParticles;
-    public AudioClip mainEngine, winSound, deathSound;
-
+    // PRIVATE VARIABLES
     private float elapsedTime = 0;
-
-    // Use this for initialization
+    
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         renderer = GetComponent<Renderer>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-
         if (GameMaster.currentGameState != GameMaster.GameState.Alive)
         {
             return;
@@ -38,6 +43,12 @@ public class Rocket : MonoBehaviour {
 
         RespondToThrustInput();
         RespondToRotateInput();
+        CheckRocketOnScreen();
+    }
+
+    private void CheckRocketOnScreen()
+    {
+        elapsedTime += Time.deltaTime;
 
         if (!renderer.isVisible && elapsedTime > 2f)
         {

@@ -2,13 +2,14 @@
 
 public class GameMaster : MonoBehaviour {
 
+    [Header("External Components")]
     public Rocket rocket;
     public SceneLoader sceneLoader;
 
-    public enum GameState { Alive, Transcending, Dead };
-    static public GameState currentGameState;
-
-    // Use this for initialization
+    // STATE VARIABLES
+    [HideInInspector] public enum GameState { Alive, Transcending, Dead };
+    [HideInInspector] static public GameState currentGameState;
+    
     void Start () {
         currentGameState = GameState.Alive;
     }
