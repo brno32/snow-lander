@@ -1,78 +1,54 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Rocket : MonoBehaviour {
 
-    public float loadLevelDelay = 1f;
-
-    public float mainThrust = 100f;
-    public float rcsThrust = 100f;
-
-    public AudioClip mainEngine;
-    public AudioClip winSound;
-    public AudioClip deathSound;
-
-    public ParticleSystem mainEngineParticles;
-    public ParticleSystem winParticles;
-    public ParticleSystem deathParticles;
+    public float mainThrust = 1000f;
+    public float torque = 175f;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    public enum State { Alive, Transcending, Dead };
+    new Renderer renderer;
 
-    public State state;
+    public ParticleSystem thrustParticles, winParticles, deathParticles;
+    public AudioClip mainEngine, winSound, deathSound;
 
-    private int currentLvl = 0;
-
-    private bool collisionsOff = false;
+    private float elapsedTime = 0;
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        currentLvl = SceneManager.GetActiveScene().buildIndex;
-        state = State.Alive;
+        renderer = GetComponent<Renderer>();
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (state != State.Alive)
+    // Update is called once per frame
+    void Update()
+    {
+        elapsedTime += Time.deltaTime;
+
+        if (GameMaster.currentGameState != GameMaster.GameState.Alive)
         {
             return;
         }
-        
+
         RespondToThrustInput();
         RespondToRotateInput();
 
-        if (Debug.isDebugBuild)
+        if (!renderer.isVisible && elapsedTime > 2f)
         {
-            RespondToDebugInput();
-        }
-	}
-
-    private void RespondToDebugInput()
-    {
-        if (Input.GetKey(KeyCode.L))
-        {
-            LoadNextScene();
-        }
-        if ((Input.GetKey(KeyCode.C)))
-        {
-            collisionsOff = !collisionsOff;
+            GameMaster.currentGameState = GameMaster.GameState.Dead;
+            PlayDeathEffects();
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive)
-        {
-            return;
-        }
-
-        if (collisionsOff)
+        if (GameMaster.currentGameState != GameMaster.GameState.Alive)
         {
             return;
         }
@@ -82,83 +58,50 @@ public class Rocket : MonoBehaviour {
             case "Friendly":
                 break;
             case "Finish":
-                StartWinSequence();
+                GameMaster.currentGameState = GameMaster.GameState.Transcending;
+                PlayWinEffects();
                 break;
             default:
-                StartDeathSequence();
+                GameMaster.currentGameState = GameMaster.GameState.Dead;
+                PlayDeathEffects();
                 break;
-        }
-    }
-
-    private void StartWinSequence()
-    {
-        state = State.Transcending;
-        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
-        audioSource.Stop();
-        winParticles.Play();
-        Invoke("LoadNextScene", loadLevelDelay);
-        audioSource.PlayOneShot(winSound);
-    }
-
-    private void StartDeathSequence()
-    {
-        state = State.Dead;
-        audioSource.Stop();
-        mainEngineParticles.Stop();
-        deathParticles.Play();
-        Invoke("LoadCurrentScene", loadLevelDelay);
-        audioSource.PlayOneShot(deathSound);
-    }
-
-    private void LoadCurrentScene()
-    {
-        SceneManager.LoadScene(currentLvl);
-    }
-
-    private void LoadNextScene()
-    {
-        if (currentLvl < SceneManager.sceneCountInBuildSettings - 1)
-        {
-            SceneManager.LoadScene(currentLvl + 1);
-        }
-        else
-        {
-            print("No more levels. You win!");
         }
     }
 
     private void RespondToRotateInput()
     {
         rigidBody.freezeRotation = true;
-        float rotationThisFrame = rcsThrust * Time.deltaTime;
+        
+        // +1 when thrown right. -1 when thrown left
+        float zThrow = CrossPlatformInputManager.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
-        {
-            // Do nothing if both keys pressed at once
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.forward * rotationThisFrame);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(Vector3.back * rotationThisFrame);
-        }
+        // Result is ordinarily positive, meaning counter-clockwise
+        // When pressing right, you want to move clock-wise
+        float rotationThisFrame = - torque * zThrow * Time.deltaTime;
+        
+        transform.Rotate(Vector3.forward * rotationThisFrame);
 
         rigidBody.freezeRotation = false;
     }
 
     private void RespondToThrustInput()
-    {   
-        if (Input.GetKey(KeyCode.Space))
+    {
+        float thrustInput = CrossPlatformInputManager.GetAxis("Thrust");
+
+        if (thrustInput > 0)
         {
             ApplyThrust();
         }
         else
         {
             audioSource.Stop();
-            mainEngineParticles.Stop();
+            thrustParticles.Stop();
         }
+    }
+
+    public void FreezePlayerInput()
+    {
+        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void ApplyThrust()
@@ -170,6 +113,24 @@ public class Rocket : MonoBehaviour {
         {
             audioSource.PlayOneShot(mainEngine);
         }
-        mainEngineParticles.Play();
+        thrustParticles.Play();
+    }
+
+    public void PlayWinEffects()
+    {
+        FreezePlayerInput();
+        audioSource.Stop();
+        thrustParticles.Stop();
+        winParticles.Play();
+        audioSource.PlayOneShot(winSound);
+    }
+
+    public void PlayDeathEffects()
+    {
+        FreezePlayerInput();
+        audioSource.Stop();
+        thrustParticles.Stop();
+        deathParticles.Play();
+        audioSource.PlayOneShot(deathSound);
     }
 }

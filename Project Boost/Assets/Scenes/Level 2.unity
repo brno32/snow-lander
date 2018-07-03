@@ -449,6 +449,11 @@ Prefab:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114507489708359222, guid: ecc979df38d84304c8b6c654ccc39fb8,
+        type: 2}
+      propertyPath: rcsThrust
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
   m_IsPrefabParent: 0
