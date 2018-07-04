@@ -17,6 +17,7 @@ public class Rocket : MonoBehaviour {
 
     [Header("Particle Effects")]
     public ParticleSystem thrustParticles;
+    public ParticleSystem thrustParticles2;
     public ParticleSystem winParticles;
     public ParticleSystem deathParticles;
 
@@ -109,6 +110,7 @@ public class Rocket : MonoBehaviour {
         {
             audioSource.Stop();
             thrustParticles.Stop();
+            thrustParticles2.Stop();
         }
     }
 
@@ -122,6 +124,7 @@ public class Rocket : MonoBehaviour {
             audioSource.PlayOneShot(mainEngine);
         }
         thrustParticles.Play();
+        thrustParticles2.Play();
     }
 
     public void PlayWinEffects()
@@ -129,6 +132,7 @@ public class Rocket : MonoBehaviour {
         FreezeRocket();  // Don't allow ragdoll effects on victory
         audioSource.Stop();
         thrustParticles.Stop();
+        thrustParticles2.Stop();
         winParticles.Play();
         audioSource.PlayOneShot(winSound);
     }
@@ -137,6 +141,7 @@ public class Rocket : MonoBehaviour {
     {
         audioSource.Stop();
         thrustParticles.Stop();
+        thrustParticles2.Stop();
         deathParticles.Play();
         audioSource.PlayOneShot(deathSound);
     }
