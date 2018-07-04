@@ -50,6 +50,7 @@ public class Rocket : MonoBehaviour {
     {
         elapsedTime += Time.deltaTime;
 
+        // Let the rocket load before ending the game because it's not on-screen
         if (!renderer.isVisible && elapsedTime > 2f)
         {
             GameMaster.currentGameState = GameMaster.GameState.Dead;

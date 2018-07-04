@@ -10,9 +10,16 @@ public class SceneLoader : MonoBehaviour {
         Invoke("LoadCurrentScene", loadLevelDelay);
     }
 
-    public void BeginLoadingNextScene()
+    public void BeginLoadingNextScene(bool ignoreDelay = false)
     {
-        Invoke("LoadNextScene", loadLevelDelay);
+        if (!ignoreDelay)
+        {
+            Invoke("LoadNextScene", loadLevelDelay);
+        }
+        else
+        {
+            LoadNextScene();
+        }
     }
 
     private void LoadCurrentScene()
