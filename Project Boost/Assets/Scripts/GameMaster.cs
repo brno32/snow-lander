@@ -29,4 +29,9 @@ public class GameMaster : MonoBehaviour {
                 break;
         }
     }
+
+    public static void ChangeGameState(GameState newState)
+    {
+        currentGameState = newState;
+    }
 }

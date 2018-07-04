@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
 
-    private float loadLevelDelay = 1f;
+    public float loadLevelDelay = 1.25f;
 
     public void BeginLoadingCurrentScene()
     {
