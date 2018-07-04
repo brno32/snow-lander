@@ -9,12 +9,6 @@ public class Rotator : MonoBehaviour {
     public float angularVelocity = 100f;
 
     private float angularPosition;
-
-    private Quaternion currentRotation;
-    
-	void Start () {
-        currentRotation = transform.rotation;
-    }
 	
 	void Update () {
         float angularOffset = angularVelocity * Time.deltaTime;

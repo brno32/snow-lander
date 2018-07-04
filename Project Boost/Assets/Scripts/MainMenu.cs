@@ -6,11 +6,9 @@ public class MainMenu : MonoBehaviour {
 
     public SceneLoader sceneLoader;
 
-    Animator animator;
-
     // Use this for initialization
     void Start () {
-        animator = GetComponentInChildren<Animator>();
+        
     }
 	
 	// Update is called once per frame
@@ -21,7 +19,6 @@ public class MainMenu : MonoBehaviour {
     public void Play()
     {
         sceneLoader.BeginLoadingNextScene(true);
-        animator.enabled = true;
     }
 
     public void Options()
