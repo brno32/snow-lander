@@ -6,11 +6,15 @@ public class GameMaster : MonoBehaviour {
     public Rocket rocket;
     public SceneLoader sceneLoader;
 
+    // DIFFICULTY VARIABLES
+    [HideInInspector] static public bool isEasy = false;
+
     // STATE VARIABLES
-    [HideInInspector] public enum GameState { Alive, Transcending, Dead };
+    [HideInInspector] public enum GameState { Alive, Transcending, Dead, Paused };
     [HideInInspector] static public GameState currentGameState;
     
     void Start () {
+        //DontDestroyOnLoad(gameObject);
         currentGameState = GameState.Alive;
     }
 
@@ -24,6 +28,8 @@ public class GameMaster : MonoBehaviour {
                 break;
             case GameState.Dead:
                 sceneLoader.BeginLoadingCurrentScene();
+                break;
+            case GameState.Paused:
                 break;
             default:
                 break;

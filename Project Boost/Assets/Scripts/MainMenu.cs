@@ -20,7 +20,6 @@ public class MainMenu : MonoBehaviour {
     public void Play()
     {
         sceneLoader.BeginLoadingNextScene(true);
-        print("RAN");
     }
 
     public void Options()

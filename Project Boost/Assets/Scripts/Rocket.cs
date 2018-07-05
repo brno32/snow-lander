@@ -17,8 +17,8 @@ public class Rocket : MonoBehaviour {
     public float torque = 175f;
 
     [Header("Particle Effects")]
-    public ParticleSystem thrustParticles;
-    public ParticleSystem thrustParticles2;
+    public ParticleSystem thrustFlameParticles;
+    public ParticleSystem thrustSmokeParticles;
     public ParticleSystem winParticles;
     public ParticleSystem deathParticles;
 
@@ -46,6 +46,19 @@ public class Rocket : MonoBehaviour {
         RespondToThrustInput();
         RespondToRotateInput();
         CheckRocketOnScreen();
+        CheckDifficulty();
+    }
+
+    void CheckDifficulty()
+    {
+        if (GameMaster.isEasy)
+        {
+            rigidBody.useGravity = false;
+        }
+        else
+        {
+            rigidBody.useGravity = true;
+        }
     }
 
     private void CheckRocketOnScreen()
@@ -90,9 +103,11 @@ public class Rocket : MonoBehaviour {
         // +1 when thrown right. -1 when thrown left
         float zThrow = CrossPlatformInputManager.GetAxis("Horizontal");
 
+        // MOBILE INPUT
         if (mobileUI.activeSelf)
         {
-            if (CrossPlatformInputManager.GetButton("Left") && CrossPlatformInputManager.GetButton("Right"))
+            if (CrossPlatformInputManager.GetButton("Left") && 
+                CrossPlatformInputManager.GetButton("Right"))
             {
                 zThrow = 0f;
             }
@@ -106,8 +121,8 @@ public class Rocket : MonoBehaviour {
             }
         }
 
-        // Result is ordinarily positive, meaning counter-clockwise
-        // When pressing right, you want to move clock-wise
+        // In this orientation, a positive vector means a counter-clockwise rotation
+        // Pressing right should rotate clock-wise, so flip vector with negative sign
         float rotationThisFrame = -torque * zThrow * Time.deltaTime;
         
         transform.Rotate(Vector3.forward * rotationThisFrame);
@@ -119,17 +134,17 @@ public class Rocket : MonoBehaviour {
     {
         float thrustInput = CrossPlatformInputManager.GetAxis("Thrust");
 
-        bool thrustInput2 = CrossPlatformInputManager.GetButton("Thrust");
+        bool thrustMobileInput = CrossPlatformInputManager.GetButton("Thrust");
 
-        if (thrustInput > 0 || thrustInput2)
+        if (thrustInput > 0 || thrustMobileInput)
         {
             ApplyThrust();
         }
         else
         {
             audioSource.Stop();
-            thrustParticles.Stop();
-            thrustParticles2.Stop();
+            thrustFlameParticles.Stop();
+            thrustSmokeParticles.Stop();
         }
     }
 
@@ -142,16 +157,16 @@ public class Rocket : MonoBehaviour {
         {
             audioSource.PlayOneShot(mainEngine);
         }
-        thrustParticles.Play();
-        thrustParticles2.Play();
+        thrustFlameParticles.Play();
+        thrustSmokeParticles.Play();
     }
 
     public void PlayWinEffects()
     {
         FreezeRocket();  // Don't allow ragdoll effects on victory
         audioSource.Stop();
-        thrustParticles.Stop();
-        thrustParticles2.Stop();
+        thrustFlameParticles.Stop();
+        thrustSmokeParticles.Stop();
         winParticles.Play();
         audioSource.PlayOneShot(winSound);
     }
@@ -159,10 +174,17 @@ public class Rocket : MonoBehaviour {
     public void PlayDeathEffects()
     {
         audioSource.Stop();
-        thrustParticles.Stop();
-        thrustParticles2.Stop();
+        thrustFlameParticles.Stop();
+        thrustSmokeParticles.Stop();
         deathParticles.Play();
         audioSource.PlayOneShot(deathSound);
+    }
+
+    public void PauseEffects()
+    {
+        audioSource.Stop();
+        thrustFlameParticles.Stop();
+        thrustSmokeParticles.Stop();
     }
 
     public void FreezeRocket()

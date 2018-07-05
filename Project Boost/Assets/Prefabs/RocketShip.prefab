@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 23604755626014070}
   - component: {fileID: 65522367879527760}
   m_Layer: 0
-  m_Name: rocket_long_smoke_glow
+  m_Name: Thrust Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 198884001928794272}
   - component: {fileID: 199083726486394582}
   m_Layer: 0
-  m_Name: Exhaust_no_smoke
+  m_Name: Flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,10 +409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa0adfa2e4cc5e45b75eeaf6535542d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobileUI: {fileID: 0}
   mainThrust: 1000
   torque: 175
-  thrustParticles: {fileID: 198884001928794272}
-  thrustParticles2: {fileID: 198892627353565408}
+  thrustFlameParticles: {fileID: 198884001928794272}
+  thrustSmokeParticles: {fileID: 198892627353565408}
   winParticles: {fileID: 198900178949807708}
   deathParticles: {fileID: 198823066878615650}
   mainEngine: {fileID: 8300000, guid: a38bd7da03256cd4bbb2ab608021c2d7, type: 3}
