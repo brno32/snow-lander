@@ -10,6 +10,7 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
     new Renderer renderer;
+    public GameObject mobileUI;
 
     [Header("Controller Parameters")]
     public float mainThrust = 1000f;
@@ -89,6 +90,22 @@ public class Rocket : MonoBehaviour {
         // +1 when thrown right. -1 when thrown left
         float zThrow = CrossPlatformInputManager.GetAxis("Horizontal");
 
+        if (mobileUI.activeSelf)
+        {
+            if (CrossPlatformInputManager.GetButton("Left") && CrossPlatformInputManager.GetButton("Right"))
+            {
+                zThrow = 0f;
+            }
+            else if(CrossPlatformInputManager.GetButton("Left"))
+            {
+                zThrow = -1f;
+            }
+            else if (CrossPlatformInputManager.GetButton("Right"))
+            {
+                zThrow = 1f;
+            }
+        }
+
         // Result is ordinarily positive, meaning counter-clockwise
         // When pressing right, you want to move clock-wise
         float rotationThisFrame = -torque * zThrow * Time.deltaTime;
@@ -102,7 +119,9 @@ public class Rocket : MonoBehaviour {
     {
         float thrustInput = CrossPlatformInputManager.GetAxis("Thrust");
 
-        if (thrustInput > 0)
+        bool thrustInput2 = CrossPlatformInputManager.GetButton("Thrust");
+
+        if (thrustInput > 0 || thrustInput2)
         {
             ApplyThrust();
         }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
-    public SceneLoader sceneLoader;
     public Canvas mainMenu;
+    public SceneLoader sceneLoader;
     public GameObject mainMenuRocket;
 
     public Canvas optionsMenu;
@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour {
     public void Play()
     {
         sceneLoader.BeginLoadingNextScene(true);
+        print("RAN");
     }
 
     public void Options()

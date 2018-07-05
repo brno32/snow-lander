@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour {
 
+    [Header("Tilt Parameters")]
     public float xRotation = -5f;
     public float zRotation = -5f;
     public float angularVelocity = 100f;
