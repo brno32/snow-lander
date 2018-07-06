@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -22,10 +23,10 @@ public class PauseMenu : MonoBehaviour {
     {
         if (GameMaster.currentGameState == GameMaster.GameState.Paused)
         {
-            return;
+           return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (CrossPlatformInputManager.GetButton("Cancel"))
         {
             Toggle();
         }
@@ -40,6 +41,7 @@ public class PauseMenu : MonoBehaviour {
         else
         {
             DisablePauseMenu();
+            DisableOptions();
         }
     }
 

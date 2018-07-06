@@ -54,10 +54,12 @@ public class Rocket : MonoBehaviour {
         if (DifficultyTracker.isEasy)
         {
             rigidBody.useGravity = false;
+            rigidBody.drag = 1f;
         }
         else
         {
             rigidBody.useGravity = true;
+            rigidBody.drag = .25f;
         }
     }
 
@@ -65,8 +67,8 @@ public class Rocket : MonoBehaviour {
     {
         elapsedTime += Time.deltaTime;
 
-        // Let the rocket load before ending the game because it's not on-screen
-        if (!renderer.isVisible && elapsedTime > 2f)
+        // Let the rocket render before ending the game because it's not on-screen
+        if (!renderer.isVisible && elapsedTime > 1f)
         {
             GameMaster.currentGameState = GameMaster.GameState.Dead;
             PlayDeathEffects();
@@ -133,7 +135,7 @@ public class Rocket : MonoBehaviour {
     private void RespondToThrustInput()
     {
         float thrustInput = CrossPlatformInputManager.GetAxis("Thrust");
-
+        print(thrustInput);
         bool thrustMobileInput = CrossPlatformInputManager.GetButton("Thrust");
 
         if (thrustInput > 0 || thrustMobileInput)
