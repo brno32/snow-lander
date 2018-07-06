@@ -51,7 +51,7 @@ public class Rocket : MonoBehaviour {
 
     void CheckDifficulty()
     {
-        if (GameMaster.isEasy)
+        if (DifficultyTracker.isEasy)
         {
             rigidBody.useGravity = false;
         }

@@ -9,8 +9,6 @@ public class MainMenu : MonoBehaviour {
     public GameObject mainMenuRocket;
 
     public Canvas optionsMenu;
-    public GameObject optionsMenuRocket1;
-    public GameObject optionsMenuRocket2;
     
     void Start () {
         EnableMainMenu();
@@ -43,15 +41,11 @@ public class MainMenu : MonoBehaviour {
     private void DisableOptions()
     {
         optionsMenu.enabled = false;
-        optionsMenuRocket1.SetActive(false);
-        optionsMenuRocket2.SetActive(false);
     }
 
     private void EnableOptions()
     {
         optionsMenu.enabled = true;
-        optionsMenuRocket1.SetActive(true);
-        optionsMenuRocket2.SetActive(true);
     }
 
     private void DisableMainMenu()

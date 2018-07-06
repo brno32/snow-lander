@@ -20,16 +20,19 @@ public class PauseMenu : MonoBehaviour {
 
     private void Update()
     {
+        if (GameMaster.currentGameState == GameMaster.GameState.Paused)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Toggle();
-            print("ESC PRESSED");
         }
     }
 
     public void Toggle()
     {
-        print("TOGGLE CALLED");
         if (!pauseMenu.enabled)
         {
             EnablePauseMenu();

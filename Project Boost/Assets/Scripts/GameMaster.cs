@@ -6,9 +6,6 @@ public class GameMaster : MonoBehaviour {
     public Rocket rocket;
     public SceneLoader sceneLoader;
 
-    // DIFFICULTY VARIABLES
-    [HideInInspector] static public bool isEasy = false;
-
     // STATE VARIABLES
     [HideInInspector] public enum GameState { Alive, Transcending, Dead, Paused };
     [HideInInspector] static public GameState currentGameState;

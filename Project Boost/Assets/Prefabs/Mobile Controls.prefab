@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1128944006216946
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,12 +43,12 @@ GameObject:
   - component: {fileID: 114895395193710562}
   - component: {fileID: 114774913707961814}
   m_Layer: 5
-  m_Name: JumpButton
+  m_Name: ThrustButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1644375068295272
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1880023437873428
 GameObject:
   m_ObjectHideFlags: 1
