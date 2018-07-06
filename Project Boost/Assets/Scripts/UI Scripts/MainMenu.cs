@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
-    public Canvas mainMenu;
+    public GameObject mainMenu;
     public SceneLoader sceneLoader;
     public GameObject mainMenuRocket;
 
-    public Canvas optionsMenu;
+    public GameObject optionsMenu;
     
     void Start () {
         EnableMainMenu();
@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Play()
     {
+        print("Pressd");
         sceneLoader.BeginLoadingNextScene(true);
     }
 
@@ -40,24 +41,24 @@ public class MainMenu : MonoBehaviour {
 
     private void DisableOptions()
     {
-        optionsMenu.enabled = false;
+        optionsMenu.SetActive(false);
     }
 
     private void EnableOptions()
     {
-        optionsMenu.enabled = true;
+        optionsMenu.SetActive(true);
     }
 
     private void DisableMainMenu()
     {
-        mainMenu.enabled = false;
+        mainMenu.SetActive(false);
         mainMenuRocket.SetActive(false);
         mainMenuRocket.SetActive(false);
     }
 
     private void EnableMainMenu()
     {
-        mainMenu.enabled = true;
+        mainMenu.SetActive(true);
         mainMenuRocket.SetActive(true);
         mainMenuRocket.SetActive(true);
     }

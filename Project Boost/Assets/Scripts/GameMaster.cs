@@ -11,7 +11,6 @@ public class GameMaster : MonoBehaviour {
     [HideInInspector] static public GameState currentGameState;
     
     void Start () {
-        //DontDestroyOnLoad(gameObject);
         currentGameState = GameState.Alive;
     }
 
