@@ -13,6 +13,8 @@ public class PauseMenu : MonoBehaviour {
     public Canvas optionsMenu;
     public Canvas pauseMenu;
 
+    private float delay;
+
     private void Start()
     {
         DisableOptions();
@@ -21,12 +23,7 @@ public class PauseMenu : MonoBehaviour {
 
     private void Update()
     {
-        if (GameMaster.currentGameState == GameMaster.GameState.Paused)
-        {
-           return;
-        }
-
-        if (CrossPlatformInputManager.GetButton("Cancel"))
+        if (CrossPlatformInputManager.GetButtonDown("Cancel"))
         {
             Toggle();
         }
@@ -34,14 +31,18 @@ public class PauseMenu : MonoBehaviour {
 
     public void Toggle()
     {
-        if (!pauseMenu.enabled)
+        if (optionsMenu.enabled)
+        {
+            DisableOptions();
+            DisablePauseMenu();
+        }
+        else if (!pauseMenu.enabled)
         {
             EnablePauseMenu();
         }
         else
         {
             DisablePauseMenu();
-            DisableOptions();
         }
     }
 

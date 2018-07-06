@@ -135,7 +135,7 @@ public class Rocket : MonoBehaviour {
     private void RespondToThrustInput()
     {
         float thrustInput = CrossPlatformInputManager.GetAxis("Thrust");
-        print(thrustInput);
+        
         bool thrustMobileInput = CrossPlatformInputManager.GetButton("Thrust");
 
         if (thrustInput > 0 || thrustMobileInput)
