@@ -268,12 +268,7 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114030694301849964, guid: cf3524d8637c355428efeef2de9545d1,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1293001147}
-    - target: {fileID: 114542930599122032, guid: cf3524d8637c355428efeef2de9545d1,
+    - target: {fileID: 114875483520840790, guid: cf3524d8637c355428efeef2de9545d1,
         type: 2}
       propertyPath: eventSystem
       value: 
@@ -283,34 +278,22 @@ Prefab:
       propertyPath: mainMenuRocket
       value: 
       objectReference: {fileID: 1530868370}
-    - target: {fileID: 114875483520840790, guid: cf3524d8637c355428efeef2de9545d1,
+    - target: {fileID: 114542930599122032, guid: cf3524d8637c355428efeef2de9545d1,
         type: 2}
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1669117985}
-    - target: {fileID: 114644860259905178, guid: cf3524d8637c355428efeef2de9545d1,
+    - target: {fileID: 114030694301849964, guid: cf3524d8637c355428efeef2de9545d1,
         type: 2}
-      propertyPath: m_Navigation.m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1429510718003012, guid: cf3524d8637c355428efeef2de9545d1, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000401346592482, guid: cf3524d8637c355428efeef2de9545d1, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114799482922759528, guid: cf3524d8637c355428efeef2de9545d1,
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1293001147}
+    - target: {fileID: 114477773058549450, guid: cf3524d8637c355428efeef2de9545d1,
         type: 2}
-      propertyPath: m_Navigation.m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114147006159458746, guid: cf3524d8637c355428efeef2de9545d1,
-        type: 2}
-      propertyPath: m_Navigation.m_Mode
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6d342b0533027ac4a9776e7e4ac64e32,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf3524d8637c355428efeef2de9545d1, type: 2}
   m_IsPrefabParent: 0
@@ -327,7 +310,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4403058936579848, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.29
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 4403058936579848, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
       propertyPath: m_LocalPosition.z
