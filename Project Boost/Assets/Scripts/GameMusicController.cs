@@ -21,6 +21,7 @@ public class GameMusicController : MonoBehaviour {
     {
         if (GameMaster.currentGameState == GameMaster.GameState.MainMenu)
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }
