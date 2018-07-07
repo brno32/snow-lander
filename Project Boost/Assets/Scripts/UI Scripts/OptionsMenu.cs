@@ -22,7 +22,7 @@ public class OptionsMenu : MonoBehaviour {
         }
     }
 
-    public void OptionsButton()
+    public void ChangeDifficulty()
     {
         DifficultyTracker.isEasy = !DifficultyTracker.isEasy;
 
