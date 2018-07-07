@@ -18,6 +18,7 @@ public class GameMaster : MonoBehaviour {
         switch (currentGameState)
         {
             case GameState.Alive:
+                Time.timeScale = 1f;
                 return; 
             case GameState.Transcending:
                 sceneLoader.BeginLoadingNextScene();
@@ -26,6 +27,8 @@ public class GameMaster : MonoBehaviour {
                 sceneLoader.BeginLoadingCurrentScene();
                 break;
             case GameState.Paused:
+                rocket.PauseEffects();
+                Time.timeScale = 0f;
                 break;
             default:
                 break;

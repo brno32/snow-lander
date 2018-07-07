@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class PauseMenu : MonoBehaviour {
-
-    public Rocket rocket;
-
+    
     public SceneLoader sceneLoader;
 
+    // UI Elements
     public GameObject optionsMenu;
     public GameObject pauseMenu;
 
@@ -18,51 +17,53 @@ public class PauseMenu : MonoBehaviour {
     private void Start()
     {
         DisableOptions();
-        DisablePauseMenu();
+        UnpauseGame();
     }
 
     private void Update()
     {
         if (CrossPlatformInputManager.GetButtonDown("Cancel"))
         {
-            Toggle();
+            TogglePause();
         }
-
-        print(pauseMenu.activeSelf);
     }
 
-    public void Toggle()
+    // Resume Button and Update share this method
+    public void TogglePause()
     {
         if (optionsMenu.activeSelf)
         {
             DisableOptions();
-            DisablePauseMenu();
+            UnpauseGame();
         }
         else if (!pauseMenu.activeSelf)
         {
-            EnablePauseMenu();
+            PauseGame();
         }
         else
         {
-            DisablePauseMenu();
+            UnpauseGame();
         }
     }
 
+    // Button
     public void GoToOptionsMenu()
     {
         EnableOptions();
         DisablePause();
     }
 
+    // Button
     public void GoToPauseMenu()
     {
         DisableOptions();
         EnablePause();
     }
 
+    // Button
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene(0);
+        sceneLoader.LoadMainMenu();
     }
 
     private void DisableOptions()
@@ -75,11 +76,9 @@ public class PauseMenu : MonoBehaviour {
         optionsMenu.SetActive(true);
     }
 
-    private void DisablePauseMenu()
+    private void UnpauseGame()
     {
-        Time.timeScale = 1f;
-        print(pauseMenu.activeSelf);
-        pauseMenu.SetActive(false);
+        DisablePause();
         GameMaster.ChangeGameState(GameMaster.GameState.Alive);
     }
 
@@ -91,15 +90,11 @@ public class PauseMenu : MonoBehaviour {
     private void DisablePause()
     {
         pauseMenu.SetActive(false);
-        print(Time.timeScale);
     }
 
-    private void EnablePauseMenu()
+    private void PauseGame()
     {
-        pauseMenu.SetActive(true);
-        print(pauseMenu.activeSelf);
+        EnablePause();
         GameMaster.ChangeGameState(GameMaster.GameState.Paused);
-        rocket.PauseEffects();
-        Time.timeScale = 0f;
     }
 }

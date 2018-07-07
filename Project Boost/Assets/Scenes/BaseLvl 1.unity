@@ -177,6 +177,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114543760008057920, guid: 1277f8950f984b54b9631811da8de39e,
+        type: 2}
+      propertyPath: rocket
+      value: 
+      objectReference: {fileID: 522404476}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1277f8950f984b54b9631811da8de39e, type: 2}
   m_IsPrefabParent: 0
@@ -441,6 +446,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 23901035804362266, guid: bfaee75ba1d97674aa428e6300757f4c,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bfc4d03ee2406c04ab0cb55e481abf69, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfaee75ba1d97674aa428e6300757f4c, type: 2}
   m_IsPrefabParent: 0
@@ -811,6 +821,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 12788765}
+    - target: {fileID: 114346892894864910, guid: 649fec791e8df2a4b80d8189b4aacaf0,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePause
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}
   m_IsPrefabParent: 0
@@ -869,7 +884,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4403058936579848, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -9.12
+      value: -9.35
       objectReference: {fileID: 0}
     - target: {fileID: 4403058936579848, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
       propertyPath: m_LocalPosition.z

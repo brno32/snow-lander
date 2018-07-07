@@ -15,23 +15,27 @@ public class MainMenu : MonoBehaviour {
         DisableOptions();
     }
 
+    // Button
     public void Play()
     {
         sceneLoader.BeginLoadingNextScene(true);
     }
 
+    // Button
     public void Options()
     {
         EnableOptions();
         DisableMainMenu();
     }
 
+    // Button
     public void Back()
     {
         DisableOptions();
         EnableMainMenu();
     }
 
+    // Button
     public void Quit()
     {
         Debug.Log("Exiting...");

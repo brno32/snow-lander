@@ -125,9 +125,9 @@ public class Rocket : MonoBehaviour {
 
         // In this orientation, a positive vector means a counter-clockwise rotation
         // Pressing right should rotate clock-wise, so flip vector with negative sign
-        float rotationThisFrame = -torque * zThrow * Time.deltaTime;
+        float deltaRotate = -torque * zThrow * Time.deltaTime;
         
-        transform.Rotate(Vector3.forward * rotationThisFrame);
+        transform.Rotate(Vector3.forward * deltaRotate);
 
         rigidBody.freezeRotation = false;
     }
@@ -152,9 +152,9 @@ public class Rocket : MonoBehaviour {
 
     private void ApplyThrust()
     {
-        float thrustThisFrame = mainThrust * Time.deltaTime;
+        float deltaThrust = mainThrust * Time.deltaTime;
 
-        rigidBody.AddRelativeForce(Vector3.up * thrustThisFrame);
+        rigidBody.AddRelativeForce(Vector3.up * deltaThrust);
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(mainEngine);

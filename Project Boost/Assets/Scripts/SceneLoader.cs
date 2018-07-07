@@ -5,6 +5,11 @@ public class SceneLoader : MonoBehaviour {
 
     public float loadLevelDelay = 1.25f;
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void BeginLoadingCurrentScene()
     {
         Invoke("LoadCurrentScene", loadLevelDelay);
