@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject optionsMenu;
     
     void Start () {
+        // Leave UI elements unchecked/checked freely in editor
         EnableMainMenu();
         DisableOptions();
     }

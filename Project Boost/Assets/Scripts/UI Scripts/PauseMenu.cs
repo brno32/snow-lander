@@ -16,14 +16,16 @@ public class PauseMenu : MonoBehaviour {
 
     private void Start()
     {
+        // Leave UI elements unchecked/checked freely in editor
         DisableOptions();
         UnpauseGame();
     }
 
     private void Update()
     {
-        if (GameMaster.currentGameState != GameMaster.GameState.Alive ||
-            GameMaster.currentGameState != GameMaster.GameState.Paused)
+        if (GameMaster.currentGameState == GameMaster.GameState.Transcending ||
+            GameMaster.currentGameState == GameMaster.GameState.Dead ||
+            GameMaster.currentGameState == GameMaster.GameState.Win)
         {
             return;
         }

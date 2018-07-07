@@ -12,7 +12,7 @@ public class GameMaster : MonoBehaviour {
     [HideInInspector] static public GameState currentGameState;
     
     void Start () {
-        currentGameState = GameState.Alive;
+        ChangeGameState(GameState.Alive);
         winMessage.SetActive(false);
     }
 

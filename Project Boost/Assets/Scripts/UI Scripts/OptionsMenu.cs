@@ -10,7 +10,7 @@ public class OptionsMenu : MonoBehaviour {
     private string easy = "Difficulty: Easy";
     private string hard = "Difficulty: Hard";
 
-    public void Start()
+    private void Start()
     {
         if (DifficultyTracker.isEasy)
         {

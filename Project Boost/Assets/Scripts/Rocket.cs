@@ -13,7 +13,7 @@ public class Rocket : MonoBehaviour {
     public GameObject mobileUI;
 
     [Header("Controller Parameters")]
-    public float mainThrust = 1000f;
+    public float thrust = 1000f;
     public float torque = 175f;
 
     [Header("Particle Effects")]
@@ -104,8 +104,7 @@ public class Rocket : MonoBehaviour {
         // Z direction is an arrow pointing into the screen
         // +1 when thrown right. -1 when thrown left
         float zThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-
-        // MOBILE INPUT
+        
         if (mobileUI.activeSelf)
         {
             if (CrossPlatformInputManager.GetButton("Left") && 
@@ -124,7 +123,7 @@ public class Rocket : MonoBehaviour {
         }
 
         // In this orientation, a positive vector means a counter-clockwise rotation
-        // Pressing right should rotate clock-wise, so flip vector with negative sign
+        // Pressing right should rotate the Rocket clock-wise, so flip vector with negative sign
         float deltaRotate = -torque * zThrow * Time.deltaTime;
         
         transform.Rotate(Vector3.forward * deltaRotate);
@@ -135,7 +134,7 @@ public class Rocket : MonoBehaviour {
     private void RespondToThrustInput()
     {
         float thrustInput = CrossPlatformInputManager.GetAxis("Thrust");
-        
+
         bool thrustMobileInput = CrossPlatformInputManager.GetButton("Thrust");
 
         if (thrustInput > 0 || thrustMobileInput)
@@ -152,7 +151,7 @@ public class Rocket : MonoBehaviour {
 
     private void ApplyThrust()
     {
-        float deltaThrust = mainThrust * Time.deltaTime;
+        float deltaThrust = thrust * Time.deltaTime;
 
         rigidBody.AddRelativeForce(Vector3.up * deltaThrust);
 
