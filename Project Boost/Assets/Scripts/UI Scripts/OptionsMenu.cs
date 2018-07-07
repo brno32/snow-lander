@@ -7,18 +7,32 @@ public class OptionsMenu : MonoBehaviour {
 
     public Text difficultyDisplayText;
 
-    public void OptionsButton()
-    {
-        DifficultyTracker.isEasy = !DifficultyTracker.isEasy;
-        difficultyDisplayText.text = "Difficulty: Hard";
+    private string easy = "Difficulty: Easy";
+    private string hard = "Difficulty: Hard";
 
+    public void Start()
+    {
         if (DifficultyTracker.isEasy)
         {
-            difficultyDisplayText.text = "Difficulty: Easy";
+            difficultyDisplayText.text = easy;
         }
         else
         {
-            difficultyDisplayText.text = "Difficulty: Hard";
+            difficultyDisplayText.text = hard;
+        }
+    }
+
+    public void OptionsButton()
+    {
+        DifficultyTracker.isEasy = !DifficultyTracker.isEasy;
+
+        if (DifficultyTracker.isEasy)
+        {
+            difficultyDisplayText.text = easy;
+        }
+        else
+        {
+            difficultyDisplayText.text = hard;
         }
     }
 }

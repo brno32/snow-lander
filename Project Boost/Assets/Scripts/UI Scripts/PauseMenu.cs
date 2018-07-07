@@ -10,8 +10,8 @@ public class PauseMenu : MonoBehaviour {
 
     public SceneLoader sceneLoader;
 
-    public Canvas optionsMenu;
-    public Canvas pauseMenu;
+    public GameObject optionsMenu;
+    public GameObject pauseMenu;
 
     private float delay;
 
@@ -27,16 +27,18 @@ public class PauseMenu : MonoBehaviour {
         {
             Toggle();
         }
+
+        print(pauseMenu.activeSelf);
     }
 
     public void Toggle()
     {
-        if (optionsMenu.enabled)
+        if (optionsMenu.activeSelf)
         {
             DisableOptions();
             DisablePauseMenu();
         }
-        else if (!pauseMenu.enabled)
+        else if (!pauseMenu.activeSelf)
         {
             EnablePauseMenu();
         }
@@ -52,7 +54,7 @@ public class PauseMenu : MonoBehaviour {
         DisablePause();
     }
 
-    public void GoBackToPauseMenu()
+    public void GoToPauseMenu()
     {
         DisableOptions();
         EnablePause();
@@ -65,34 +67,37 @@ public class PauseMenu : MonoBehaviour {
 
     private void DisableOptions()
     {
-        optionsMenu.enabled = false;
+        optionsMenu.SetActive(false);
     }
 
     private void EnableOptions()
     {
-        optionsMenu.enabled = true;
+        optionsMenu.SetActive(true);
     }
 
     private void DisablePauseMenu()
     {
         Time.timeScale = 1f;
-        pauseMenu.enabled = false;
+        print(pauseMenu.activeSelf);
+        pauseMenu.SetActive(false);
         GameMaster.ChangeGameState(GameMaster.GameState.Alive);
     }
 
     private void EnablePause()
     {
-        pauseMenu.enabled = true;
+        pauseMenu.SetActive(true);
     }
 
     private void DisablePause()
     {
-        pauseMenu.enabled = false;
+        pauseMenu.SetActive(false);
+        print(Time.timeScale);
     }
 
     private void EnablePauseMenu()
     {
-        pauseMenu.enabled = true;
+        pauseMenu.SetActive(true);
+        print(pauseMenu.activeSelf);
         GameMaster.ChangeGameState(GameMaster.GameState.Paused);
         rocket.PauseEffects();
         Time.timeScale = 0f;

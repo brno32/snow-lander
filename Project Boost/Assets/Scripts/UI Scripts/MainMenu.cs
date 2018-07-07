@@ -17,7 +17,6 @@ public class MainMenu : MonoBehaviour {
 
     public void Play()
     {
-        print("Pressd");
         sceneLoader.BeginLoadingNextScene(true);
     }
 
@@ -53,13 +52,11 @@ public class MainMenu : MonoBehaviour {
     {
         mainMenu.SetActive(false);
         mainMenuRocket.SetActive(false);
-        mainMenuRocket.SetActive(false);
     }
 
     private void EnableMainMenu()
     {
         mainMenu.SetActive(true);
-        mainMenuRocket.SetActive(true);
         mainMenuRocket.SetActive(true);
     }
 }
