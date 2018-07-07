@@ -5,13 +5,15 @@ public class GameMaster : MonoBehaviour {
     [Header("External Components")]
     public Rocket rocket;
     public SceneLoader sceneLoader;
+    public GameObject winMessage;
 
     // STATE VARIABLES
-    [HideInInspector] public enum GameState { Alive, Transcending, Dead, Paused };
+    [HideInInspector] public enum GameState { Alive, Transcending, Dead, Paused, Win };
     [HideInInspector] static public GameState currentGameState;
     
     void Start () {
         currentGameState = GameState.Alive;
+        winMessage.SetActive(false);
     }
 
     void Update() {
@@ -29,6 +31,10 @@ public class GameMaster : MonoBehaviour {
             case GameState.Paused:
                 rocket.PauseEffects();
                 Time.timeScale = 0f;
+                break;
+            case GameState.Win:
+                winMessage.SetActive(true);
+                sceneLoader.BeginLoadingMainMenu();
                 break;
             default:
                 break;

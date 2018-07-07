@@ -151,7 +151,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864970850117858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.2, y: -9.12, z: 0}
+  m_LocalPosition: {x: -27.2, y: -9.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4855564276002614}
@@ -416,7 +416,7 @@ MonoBehaviour:
   thrustSmokeParticles: {fileID: 198892627353565408}
   winParticles: {fileID: 198900178949807708}
   deathParticles: {fileID: 198823066878615650}
-  mainEngine: {fileID: 8300000, guid: a38bd7da03256cd4bbb2ab608021c2d7, type: 3}
+  thrustSound: {fileID: 8300000, guid: a38bd7da03256cd4bbb2ab608021c2d7, type: 3}
   winSound: {fileID: 8300000, guid: a27252beaf05ad34e9aa990ff589371b, type: 3}
   deathSound: {fileID: 8300000, guid: de22ecf9e2939d441ac94dfa593861df, type: 3}
 --- !u!198 &198823066878615650

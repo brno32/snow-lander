@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
-    public GameObject mainMenu;
+    [Tooltip("Needs a reference to a game object with SceneLoader attached")]
     public SceneLoader sceneLoader;
+    
     public GameObject mainMenuRocket;
 
+    [Tooltip("Needs a reference to the panel that contains the Options Menu UI elements")]
     public GameObject optionsMenu;
     
     void Start () {
@@ -54,13 +56,13 @@ public class MainMenu : MonoBehaviour {
 
     private void DisableMainMenu()
     {
-        mainMenu.SetActive(false);
+        gameObject.SetActive(false);
         mainMenuRocket.SetActive(false);
     }
 
     private void EnableMainMenu()
     {
-        mainMenu.SetActive(true);
+        gameObject.SetActive(true);
         mainMenuRocket.SetActive(true);
     }
 }

@@ -22,13 +22,19 @@ public class PauseMenu : MonoBehaviour {
 
     private void Update()
     {
+        if (GameMaster.currentGameState != GameMaster.GameState.Alive ||
+            GameMaster.currentGameState != GameMaster.GameState.Paused)
+        {
+            return;
+        }
+
         if (CrossPlatformInputManager.GetButtonDown("Cancel"))
         {
             TogglePause();
         }
     }
 
-    // Resume Button and Update share this method
+    // Resume (UI button) and Cancel (Controller button) share this method
     public void TogglePause()
     {
         if (optionsMenu.activeSelf)

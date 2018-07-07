@@ -4,10 +4,11 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
 
     public float loadLevelDelay = 1.25f;
+    public float loadMainMenuDelay = 3f;
 
-    public void LoadMainMenu()
+    public void BeginLoadingMainMenu()
     {
-        SceneManager.LoadScene(0);
+        Invoke("LoadMainMenu", loadMainMenuDelay);
     }
 
     public void BeginLoadingCurrentScene()
@@ -27,6 +28,11 @@ public class SceneLoader : MonoBehaviour {
         }
     }
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     private void LoadCurrentScene()
     {
         SceneManager.LoadScene(GetCurrentScene());
@@ -40,7 +46,7 @@ public class SceneLoader : MonoBehaviour {
         }
         else
         {
-            print("No more levels. You win!");
+            GameMaster.ChangeGameState(GameMaster.GameState.Win);
         }
     }
 

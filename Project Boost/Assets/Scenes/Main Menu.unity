@@ -162,6 +162,12 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114543760008057920, guid: 1277f8950f984b54b9631811da8de39e,
+        type: 2}
+      propertyPath: winMessage
+      value: 
+      objectReference: {fileID: 1904607669674258, guid: 1137221bc7c5a1549a262937de1b98f1,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1277f8950f984b54b9631811da8de39e, type: 2}
   m_IsPrefabParent: 0
