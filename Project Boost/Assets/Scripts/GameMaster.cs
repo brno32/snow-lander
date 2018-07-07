@@ -8,7 +8,7 @@ public class GameMaster : MonoBehaviour {
     public GameObject winMessage;
 
     // STATE VARIABLES
-    [HideInInspector] public enum GameState { Alive, Transcending, Dead, Paused, Win };
+    [HideInInspector] public enum GameState { MainMenu, Alive, Transcending, Dead, Paused, Win };
     [HideInInspector] static public GameState currentGameState;
     
     void Start () {

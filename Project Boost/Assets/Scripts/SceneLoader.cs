@@ -30,6 +30,7 @@ public class SceneLoader : MonoBehaviour {
 
     public void LoadMainMenu()
     {
+        GameMaster.ChangeGameState(GameMaster.GameState.MainMenu);
         SceneManager.LoadScene(0);
     }
 

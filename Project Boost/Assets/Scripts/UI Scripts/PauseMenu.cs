@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour {
     
@@ -59,6 +60,8 @@ public class PauseMenu : MonoBehaviour {
     {
         EnableOptions();
         DisablePause();
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     // Button
@@ -71,6 +74,7 @@ public class PauseMenu : MonoBehaviour {
     // Button
     public void GoToMainMenu()
     {
+        GameMaster.ChangeGameState(GameMaster.GameState.MainMenu);
         sceneLoader.LoadMainMenu();
     }
 
