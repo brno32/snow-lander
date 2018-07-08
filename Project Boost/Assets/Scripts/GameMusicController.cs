@@ -19,10 +19,11 @@ public class GameMusicController : MonoBehaviour {
 
     private void Update()
     {
-        if (GameMaster.currentGameState == GameMaster.GameState.MainMenu)
+        if (GameMaster.currentGameState == GameMaster.GameState.Win)
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
+            print("destroyed");
         }
     }
 }
