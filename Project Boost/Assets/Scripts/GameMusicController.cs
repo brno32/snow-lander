@@ -23,7 +23,6 @@ public class GameMusicController : MonoBehaviour {
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
-            print("destroyed");
         }
     }
 }

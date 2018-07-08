@@ -10,8 +10,9 @@ public class GameMaster : MonoBehaviour {
     public GameObject winMessage;
     public Text levelDisplay;
 
-    private int numOfLevels;
-    private int currentLevel;
+    // SCENE MANAGEMENT VARIABLES
+    [HideInInspector] static public int numOfLevels;
+    [HideInInspector] static public int currentLevel;
 
     // STATE VARIABLES
     [HideInInspector] public enum GameState { MainMenu, Alive, Transcending, Dead, Paused, Win };
@@ -21,15 +22,13 @@ public class GameMaster : MonoBehaviour {
         ChangeGameState(GameState.Alive);
         winMessage.SetActive(false);
 
-        if (levelDisplay == null)
-        {
-            return;
-        }
-
         numOfLevels = SceneManager.sceneCountInBuildSettings - 1;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
 
-        levelDisplay.text = currentLevel + "/" + numOfLevels;
+        if (levelDisplay != null)
+        {
+            levelDisplay.text = currentLevel + "/" + numOfLevels;
+        }
     }
 
     void Update() {

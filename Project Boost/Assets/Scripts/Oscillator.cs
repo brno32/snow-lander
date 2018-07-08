@@ -12,14 +12,12 @@ public class Oscillator : MonoBehaviour {
     public int angularSpeed = 2;
 
     public Vector3 movementDirection = new Vector3(0f, 0f, 0f);
-
-    // Use this for initialization
+    
     void Start ()
     {
         startPosition = transform.position;
     }
 	
-	// Update is called once per frame
 	void Update ()
     {
         currentTime = currentTime + Time.deltaTime;

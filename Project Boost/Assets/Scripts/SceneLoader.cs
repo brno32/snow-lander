@@ -36,24 +36,18 @@ public class SceneLoader : MonoBehaviour {
 
     private void LoadCurrentScene()
     {
-        SceneManager.LoadScene(GetCurrentScene());
+        SceneManager.LoadScene(GameMaster.currentLevel);
     }
 
     private void LoadNextScene()
     {
-        if (GetCurrentScene() < SceneManager.sceneCountInBuildSettings - 1)
+        if (GameMaster.currentLevel < GameMaster.numOfLevels)
         {
-            SceneManager.LoadScene(GetCurrentScene() + 1);
+            SceneManager.LoadScene(GameMaster.currentLevel + 1);
         }
         else
         {
             GameMaster.ChangeGameState(GameMaster.GameState.Win);
         }
-    }
-
-    // Initializing this value as a variable was causing it to fail to be updated
-    private int GetCurrentScene()
-    {
-        return SceneManager.GetActiveScene().buildIndex;
     }
 }
