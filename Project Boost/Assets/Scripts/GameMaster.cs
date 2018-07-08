@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour {
 
@@ -6,6 +8,10 @@ public class GameMaster : MonoBehaviour {
     public Rocket rocket;
     public SceneLoader sceneLoader;
     public GameObject winMessage;
+    public Text levelDisplay;
+
+    private int numOfLevels;
+    private int currentLevel;
 
     // STATE VARIABLES
     [HideInInspector] public enum GameState { MainMenu, Alive, Transcending, Dead, Paused, Win };
@@ -14,6 +20,16 @@ public class GameMaster : MonoBehaviour {
     void Start () {
         ChangeGameState(GameState.Alive);
         winMessage.SetActive(false);
+
+        if (levelDisplay == null)
+        {
+            return;
+        }
+
+        numOfLevels = SceneManager.sceneCountInBuildSettings - 1;
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
+
+        levelDisplay.text = currentLevel + "/" + numOfLevels;
     }
 
     void Update() {
