@@ -13,20 +13,17 @@ public class OptionsMenu : MonoBehaviour {
 
     private void Start()
     {
-        if (DifficultyTracker.isEasy)
-        {
-            difficultyDisplayText.text = easy;
-        }
-        else
-        {
-            difficultyDisplayText.text = hard;
-        }
+        SetDifficultyText();
     }
 
     public void ChangeDifficulty()
     {
         DifficultyTracker.isEasy = !DifficultyTracker.isEasy;
+        SetDifficultyText();
+    }
 
+    public void SetDifficultyText()
+    {
         if (DifficultyTracker.isEasy)
         {
             difficultyDisplayText.text = easy;
