@@ -6,40 +6,69 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Rocket : MonoBehaviour {
 
-    public float mainThrust = 1000f;
-    public float torque = 175f;
-
+    // EXTERNAL COMPONENTS
     Rigidbody rigidBody;
     AudioSource audioSource;
-
     new Renderer renderer;
+    public GameObject mobileUI;
 
-    public ParticleSystem thrustParticles, winParticles, deathParticles;
-    public AudioClip mainEngine, winSound, deathSound;
+    [Header("Controller Parameters")]
+    public float thrust = 1000f;
+    public float torque = 175f;
 
+    [Header("Particle Effects")]
+    public ParticleSystem thrustFlameParticles;
+    public ParticleSystem thrustSmokeParticles;
+    public ParticleSystem winParticles;
+    public ParticleSystem deathParticles;
+
+    [Header("Sound Effects")]
+    public AudioClip thrustSound;
+    public AudioClip winSound;
+    public AudioClip deathSound;
+
+    // PRIVATE VARIABLES
     private float elapsedTime = 0;
 
-    // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         renderer = GetComponent<Renderer>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-
-        if (GameMaster.currentGameState != GameMaster.GameState.Alive)
+        if (!RocketIsAlive())
         {
             return;
         }
 
         RespondToThrustInput();
         RespondToRotateInput();
+        CheckRocketOnScreen();
+        CheckDifficulty();
+    }
 
-        if (!renderer.isVisible && elapsedTime > 2f)
+    void CheckDifficulty()
+    {
+        if (DifficultyTracker.isEasy)
+        {
+            rigidBody.useGravity = false;
+            rigidBody.drag = 1f;
+        }
+        else
+        {
+            rigidBody.useGravity = true;
+            rigidBody.drag = .25f;
+        }
+    }
+
+    private void CheckRocketOnScreen()
+    {
+        elapsedTime += Time.deltaTime;
+
+        // Let the rocket render before ending the game because it's not on-screen
+        if (!renderer.isVisible && elapsedTime > 1f)
         {
             GameMaster.currentGameState = GameMaster.GameState.Dead;
             PlayDeathEffects();
@@ -48,7 +77,7 @@ public class Rocket : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (GameMaster.currentGameState != GameMaster.GameState.Alive)
+        if (!RocketIsAlive())
         {
             return;
         }
@@ -58,11 +87,11 @@ public class Rocket : MonoBehaviour {
             case "Friendly":
                 break;
             case "Finish":
-                GameMaster.currentGameState = GameMaster.GameState.Transcending;
+                GameMaster.ChangeGameState(GameMaster.GameState.Transcending);
                 PlayWinEffects();
                 break;
             default:
-                GameMaster.currentGameState = GameMaster.GameState.Dead;
+                GameMaster.ChangeGameState(GameMaster.GameState.Dead);
                 PlayDeathEffects();
                 break;
         }
@@ -72,14 +101,32 @@ public class Rocket : MonoBehaviour {
     {
         rigidBody.freezeRotation = true;
         
+        // Z direction is an arrow pointing into the screen
         // +1 when thrown right. -1 when thrown left
         float zThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-
-        // Result is ordinarily positive, meaning counter-clockwise
-        // When pressing right, you want to move clock-wise
-        float rotationThisFrame = - torque * zThrow * Time.deltaTime;
         
-        transform.Rotate(Vector3.forward * rotationThisFrame);
+        if (mobileUI.activeSelf)
+        {
+            if (CrossPlatformInputManager.GetButton("Left") && 
+                CrossPlatformInputManager.GetButton("Right"))
+            {
+                zThrow = 0f;
+            }
+            else if(CrossPlatformInputManager.GetButton("Left"))
+            {
+                zThrow = -1f;
+            }
+            else if (CrossPlatformInputManager.GetButton("Right"))
+            {
+                zThrow = 1f;
+            }
+        }
+
+        // In this orientation, a positive vector means a counter-clockwise rotation
+        // Pressing right should rotate the Rocket clock-wise, so flip vector with negative sign
+        float deltaRotate = -torque * zThrow * Time.deltaTime;
+        
+        transform.Rotate(Vector3.forward * deltaRotate);
 
         rigidBody.freezeRotation = false;
     }
@@ -88,49 +135,68 @@ public class Rocket : MonoBehaviour {
     {
         float thrustInput = CrossPlatformInputManager.GetAxis("Thrust");
 
-        if (thrustInput > 0)
+        bool thrustMobileInput = CrossPlatformInputManager.GetButton("Thrust");
+
+        if (thrustInput > 0 || thrustMobileInput)
         {
             ApplyThrust();
         }
         else
         {
             audioSource.Stop();
-            thrustParticles.Stop();
+            thrustFlameParticles.Stop();
+            thrustSmokeParticles.Stop();
         }
-    }
-
-    public void FreezePlayerInput()
-    {
-        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void ApplyThrust()
     {
-        float thrustThisFrame = mainThrust * Time.deltaTime;
+        float deltaThrust = thrust * Time.deltaTime;
 
-        rigidBody.AddRelativeForce(Vector3.up * thrustThisFrame);
+        rigidBody.AddRelativeForce(Vector3.up * deltaThrust);
+
+        // Play the thrust sound if it isn't already playing
         if (!audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(mainEngine);
+            audioSource.PlayOneShot(thrustSound);
         }
-        thrustParticles.Play();
+        thrustFlameParticles.Play();
+        thrustSmokeParticles.Play();
     }
 
     public void PlayWinEffects()
     {
-        FreezePlayerInput();
+        FreezeRocket();  // Don't allow ragdoll effects on victory
         audioSource.Stop();
-        thrustParticles.Stop();
+        thrustFlameParticles.Stop();
+        thrustSmokeParticles.Stop();
         winParticles.Play();
         audioSource.PlayOneShot(winSound);
     }
 
     public void PlayDeathEffects()
     {
-        FreezePlayerInput();
         audioSource.Stop();
-        thrustParticles.Stop();
+        thrustFlameParticles.Stop();
+        thrustSmokeParticles.Stop();
         deathParticles.Play();
         audioSource.PlayOneShot(deathSound);
+    }
+
+    public void PauseEffects()
+    {
+        audioSource.Stop();
+        thrustFlameParticles.Stop();
+        thrustSmokeParticles.Stop();
+    }
+
+    public void FreezeRocket()
+    {
+        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private static bool RocketIsAlive()
+    {
+        return GameMaster.currentGameState == GameMaster.GameState.Alive;
     }
 }
