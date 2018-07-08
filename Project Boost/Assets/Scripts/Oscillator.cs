@@ -12,6 +12,8 @@ public class Oscillator : MonoBehaviour {
     public int angularSpeed = 2;
 
     public Vector3 movementDirection = new Vector3(0f, 0f, 0f);
+
+    public float periodOffset = 0f;
     
     void Start ()
     {
@@ -22,7 +24,7 @@ public class Oscillator : MonoBehaviour {
     {
         currentTime = currentTime + Time.deltaTime;
 
-        Vector3 offset = movementFactor * movementDirection * Mathf.Sin(angularSpeed * currentTime);
+        Vector3 offset = movementFactor * movementDirection * Mathf.Sin(angularSpeed * currentTime + periodOffset);
 
         transform.position = startPosition + offset;
     }

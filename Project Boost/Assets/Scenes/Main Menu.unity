@@ -428,6 +428,36 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114147006159458746, guid: cf3524d8637c355428efeef2de9545d1,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644860259905178, guid: cf3524d8637c355428efeef2de9545d1,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114799482922759528, guid: cf3524d8637c355428efeef2de9545d1,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114030694301849964, guid: cf3524d8637c355428efeef2de9545d1,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114998658555693334, guid: cf3524d8637c355428efeef2de9545d1,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644860259905178, guid: cf3524d8637c355428efeef2de9545d1,
+        type: 2}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf3524d8637c355428efeef2de9545d1, type: 2}
   m_IsPrefabParent: 0
