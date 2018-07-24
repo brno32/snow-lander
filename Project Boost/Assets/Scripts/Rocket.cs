@@ -73,6 +73,10 @@ public class Rocket : MonoBehaviour {
             GameMaster.currentGameState = GameMaster.GameState.Dead;
             PlayDeathEffects();
         }
+        else if (elapsedTime > 1f)
+        {
+            elapsedTime = 0f;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
