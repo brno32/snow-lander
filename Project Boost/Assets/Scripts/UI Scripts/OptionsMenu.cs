@@ -24,6 +24,11 @@ public class OptionsMenu : MonoBehaviour {
 
     public void SetDifficultyText()
     {
+        if (difficultyDisplayText == null)
+        {
+            return;
+        }
+
         if (DifficultyTracker.isEasy)
         {
             difficultyDisplayText.text = easy;

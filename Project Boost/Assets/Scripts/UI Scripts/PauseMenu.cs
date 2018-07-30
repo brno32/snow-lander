@@ -16,8 +16,8 @@ public class PauseMenu : MonoBehaviour {
     private void Start()
     {
         // Leave UI elements unchecked/checked freely in editor
-        DisableOptions();
-        UnpauseGame();
+        //DisableOptions();
+        //1UnpauseGame();
     }
 
     private void Update()
