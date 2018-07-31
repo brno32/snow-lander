@@ -67,11 +67,17 @@ public class Rocket : MonoBehaviour {
     {
         elapsedTime += Time.deltaTime;
 
-        // Let the rocket render before ending the game because it's not on-screen
-        if (!renderer.isVisible && elapsedTime > 1f)
+        // Let the rocket render before ending the game because it's not on-screen,
+        // and give player some time before killing them for being out-of-bounds
+        // WARNING: isVisible returns true if any camera has view (including editor)
+        if (!renderer.isVisible && elapsedTime > 0.5f)
         {
             GameMaster.currentGameState = GameMaster.GameState.Dead;
             PlayDeathEffects();
+        }
+        else if (renderer.isVisible)
+        {
+            elapsedTime = 0f;
         }
     }
 

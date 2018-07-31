@@ -6,9 +6,9 @@ public class GameMusicController : MonoBehaviour {
 
     private void Awake()
     {
-        int numOfSongs = FindObjectsOfType<GameMusicController>().Length;
+        int numOfSongsPlaying = FindObjectsOfType<GameMusicController>().Length;
 
-        if (numOfSongs > 1)
+        if (numOfSongsPlaying > 1)
         {
             Destroy(gameObject);
             return;
@@ -19,8 +19,10 @@ public class GameMusicController : MonoBehaviour {
 
     private void Update()
     {
-        if (GameMaster.currentGameState == GameMaster.GameState.Win)
+        if (GameMaster.currentGameState == GameMaster.GameState.Win ||
+            GameMaster.currentGameState == GameMaster.GameState.MainMenu)
         {
+            // Kill the music if we're about to load the main menu
             gameObject.SetActive(false);
             Destroy(gameObject);
             print("destroyed");

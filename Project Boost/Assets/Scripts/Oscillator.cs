@@ -13,18 +13,18 @@ public class Oscillator : MonoBehaviour {
 
     public Vector3 movementDirection = new Vector3(0f, 0f, 0f);
 
-    // Use this for initialization
+    public float periodOffset = 0f;
+    
     void Start ()
     {
         startPosition = transform.position;
     }
 	
-	// Update is called once per frame
 	void Update ()
     {
         currentTime = currentTime + Time.deltaTime;
 
-        Vector3 offset = movementFactor * movementDirection * Mathf.Sin(angularSpeed * currentTime);
+        Vector3 offset = movementFactor * movementDirection * Mathf.Sin(angularSpeed * currentTime + periodOffset);
 
         transform.position = startPosition + offset;
     }

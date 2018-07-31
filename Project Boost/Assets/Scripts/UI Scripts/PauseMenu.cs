@@ -13,8 +13,6 @@ public class PauseMenu : MonoBehaviour {
     public GameObject optionsMenu;
     public GameObject pauseMenu;
 
-    private float delay;
-
     private void Start()
     {
         // Leave UI elements unchecked/checked freely in editor
@@ -40,6 +38,11 @@ public class PauseMenu : MonoBehaviour {
     // Resume (UI button) and Cancel (Controller button) share this method
     public void TogglePause()
     {
+        if (optionsMenu == null || pauseMenu == null)
+        {
+            return;
+        }
+
         if (optionsMenu.activeSelf)
         {
             DisableOptions();
@@ -56,6 +59,13 @@ public class PauseMenu : MonoBehaviour {
     }
 
     // Button
+    public void GoToPauseMenu()
+    {
+        DisableOptions();
+        EnablePause();
+    }
+
+    // Button
     public void GoToOptionsMenu()
     {
         EnableOptions();
@@ -65,27 +75,36 @@ public class PauseMenu : MonoBehaviour {
     }
 
     // Button
-    public void GoToPauseMenu()
-    {
-        DisableOptions();
-        EnablePause();
-    }
-
-    // Button
     public void GoToMainMenu()
     {
         GameMaster.ChangeGameState(GameMaster.GameState.MainMenu);
         sceneLoader.LoadMainMenu();
     }
 
+    private void EnableOptions()
+    {
+        if (optionsMenu == null)
+        {
+            return;
+        }
+
+        optionsMenu.SetActive(true);
+    }
+
     private void DisableOptions()
     {
+        if (optionsMenu == null)
+        {
+            return;
+        }
+
         optionsMenu.SetActive(false);
     }
 
-    private void EnableOptions()
+    private void PauseGame()
     {
-        optionsMenu.SetActive(true);
+        EnablePause();
+        GameMaster.ChangeGameState(GameMaster.GameState.Paused);
     }
 
     private void UnpauseGame()
@@ -96,17 +115,21 @@ public class PauseMenu : MonoBehaviour {
 
     private void EnablePause()
     {
+        if (pauseMenu == null)
+        {
+            return;
+        }
+
         pauseMenu.SetActive(true);
     }
 
     private void DisablePause()
     {
-        pauseMenu.SetActive(false);
-    }
+        if (pauseMenu == null)
+        {
+            return;
+        }
 
-    private void PauseGame()
-    {
-        EnablePause();
-        GameMaster.ChangeGameState(GameMaster.GameState.Paused);
+        pauseMenu.SetActive(false);
     }
 }

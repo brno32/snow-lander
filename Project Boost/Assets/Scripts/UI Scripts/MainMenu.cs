@@ -46,25 +46,25 @@ public class MainMenu : MonoBehaviour {
         Application.Quit();
     }
 
-    private void DisableOptions()
-    {
-        optionsMenu.SetActive(false);
-    }
-
     private void EnableOptions()
     {
         optionsMenu.SetActive(true);
     }
 
-    private void DisableMainMenu()
+    private void DisableOptions()
     {
-        gameObject.SetActive(false);
-        mainMenuRocket.SetActive(false);
+        optionsMenu.SetActive(false);
     }
 
     private void EnableMainMenu()
     {
         gameObject.SetActive(true);
         mainMenuRocket.SetActive(true);
+    }
+
+    private void DisableMainMenu()
+    {
+        gameObject.SetActive(false);
+        mainMenuRocket.SetActive(false);
     }
 }
