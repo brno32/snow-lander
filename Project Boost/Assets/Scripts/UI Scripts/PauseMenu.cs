@@ -16,8 +16,8 @@ public class PauseMenu : MonoBehaviour {
     private void Start()
     {
         // Leave UI elements unchecked/checked freely in editor
-        //DisableOptions();
-        //1UnpauseGame();
+        DisableOptions();
+        UnpauseGame();
     }
 
     private void Update()
@@ -38,6 +38,11 @@ public class PauseMenu : MonoBehaviour {
     // Resume (UI button) and Cancel (Controller button) share this method
     public void TogglePause()
     {
+        if (optionsMenu == null || pauseMenu == null)
+        {
+            return;
+        }
+
         if (optionsMenu.activeSelf)
         {
             DisableOptions();
@@ -78,11 +83,21 @@ public class PauseMenu : MonoBehaviour {
 
     private void EnableOptions()
     {
+        if (optionsMenu == null)
+        {
+            return;
+        }
+
         optionsMenu.SetActive(true);
     }
 
     private void DisableOptions()
     {
+        if (optionsMenu == null)
+        {
+            return;
+        }
+
         optionsMenu.SetActive(false);
     }
 
@@ -100,11 +115,21 @@ public class PauseMenu : MonoBehaviour {
 
     private void EnablePause()
     {
+        if (pauseMenu == null)
+        {
+            return;
+        }
+
         pauseMenu.SetActive(true);
     }
 
     private void DisablePause()
     {
+        if (pauseMenu == null)
+        {
+            return;
+        }
+
         pauseMenu.SetActive(false);
     }
 }

@@ -183,6 +183,11 @@ Prefab:
       propertyPath: difficultyDisplayText
       value: 
       objectReference: {fileID: 1325884229}
+    - target: {fileID: 114594657006157454, guid: 1277f8950f984b54b9631811da8de39e,
+        type: 2}
+      propertyPath: mobileRig
+      value: 
+      objectReference: {fileID: 1760599727}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1277f8950f984b54b9631811da8de39e, type: 2}
   m_IsPrefabParent: 0
@@ -192,6 +197,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 12788763}
   m_Script: {fileID: 11500000, guid: 0f5e840b4d2d81a499e7b2a5e8b02b6e, type: 3}
+--- !u!1 &84132743 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1334349102467560, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+    type: 2}
+  m_PrefabInternal: {fileID: 694724930}
 --- !u!1001 &186370241
 Prefab:
   m_ObjectHideFlags: 0
@@ -1040,7 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 84132743}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1669117986
@@ -1067,6 +1077,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 12788763}
   m_Script: {fileID: 11500000, guid: 1bd8e3ee437b2b740b8ef6f5038c2d7d, type: 3}
+--- !u!1 &1760599727 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1926713681237572, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+    type: 2}
+  m_PrefabInternal: {fileID: 694724930}
 --- !u!20 &1783889678 stripped
 Camera:
   m_PrefabParentObject: {fileID: 20885360280946534, guid: 3d41de77016dbe3418100e964bedeb3e,

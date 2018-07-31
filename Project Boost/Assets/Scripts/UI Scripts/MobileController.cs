@@ -14,7 +14,7 @@ public class MobileController : MonoBehaviour {
             {
                 button.SetActive(false);
             }
-            else
+            else if (GameMaster.currentGameState != GameMaster.GameState.Paused)
             {
                 button.SetActive(true);
             }

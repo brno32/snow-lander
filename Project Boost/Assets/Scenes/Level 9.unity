@@ -162,7 +162,7 @@ Prefab:
         type: 2}
       propertyPath: optionsMenu
       value: 
-      objectReference: {fileID: 522096418}
+      objectReference: {fileID: 1886189932}
     - target: {fileID: 114594657006157454, guid: 1277f8950f984b54b9631811da8de39e,
         type: 2}
       propertyPath: pauseMenu
@@ -172,7 +172,7 @@ Prefab:
         type: 2}
       propertyPath: difficultyDisplayText
       value: 
-      objectReference: {fileID: 273022546}
+      objectReference: {fileID: 0}
     - target: {fileID: 1534957609394258, guid: 1277f8950f984b54b9631811da8de39e, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -335,12 +335,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4286270527325000, guid: 027468d3c8dc34f44b3479ffa8597a45,
     type: 2}
   m_PrefabInternal: {fileID: 396535453}
---- !u!114 &273022546 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114220091164067058, guid: 649fec791e8df2a4b80d8189b4aacaf0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1886189931}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &293256183
 Prefab:
   m_ObjectHideFlags: 0
@@ -509,11 +503,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23a6d1afb69b55f40975ff74aa53f5cd, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &522096418 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1333841711339634, guid: 649fec791e8df2a4b80d8189b4aacaf0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1886189931}
 --- !u!114 &522404476 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114507489708359222, guid: ecc979df38d84304c8b6c654ccc39fb8,
@@ -1708,6 +1697,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1886189932 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1132061533417714, guid: 649fec791e8df2a4b80d8189b4aacaf0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1886189931}
 --- !u!4 &1898229428 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4286270527325000, guid: 027468d3c8dc34f44b3479ffa8597a45,
