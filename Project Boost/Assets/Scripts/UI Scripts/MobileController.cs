@@ -12,11 +12,11 @@ public class MobileController : MonoBehaviour {
         {
             if (GameMaster.currentGameState == GameMaster.GameState.Paused)
             {
-                button.SetActive(false);
+                //button.SetActive(false);
             }
             else if (GameMaster.currentGameState != GameMaster.GameState.Paused)
             {
-                button.SetActive(true);
+                //button.SetActive(true);
             }
         }
 	}
