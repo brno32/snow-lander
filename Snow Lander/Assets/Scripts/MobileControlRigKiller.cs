@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // MobileControlRig provides useful functionality, but makes it impossible to hide
-// Its UI elements. Rather than step on its toes, attach this script to mobile controls
+// its UI elements. Rather than step on its toes, attach this script to mobile controls
 // so they properly disappear when the game is paused
 public class MobileControlRigKiller : MonoBehaviour {
 
