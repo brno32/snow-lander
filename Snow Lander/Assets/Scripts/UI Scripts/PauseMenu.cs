@@ -49,6 +49,7 @@ public class PauseMenu : MonoBehaviour, OptionsProtocol
             DisableOptions();
             UnpauseGame();
         }
+
         else if (!pauseMenu.activeSelf)
         {
             PauseGame();

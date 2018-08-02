@@ -29,6 +29,7 @@ public class Rocket : MonoBehaviour {
 
     // PRIVATE VARIABLES
     private float elapsedTime = 0;
+    private bool isFrozen = false;
 
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
@@ -105,8 +106,8 @@ public class Rocket : MonoBehaviour {
 
     private void RespondToRotateInput()
     {
-        rigidBody.freezeRotation = true;
-        
+        ToggleRotation();
+
         // Z direction is an arrow pointing into the screen
         // +1 when thrown right. -1 when thrown left
         float zThrow = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -134,7 +135,7 @@ public class Rocket : MonoBehaviour {
         
         transform.Rotate(Vector3.forward * deltaRotate);
 
-        rigidBody.freezeRotation = false;
+        ToggleRotation();
     }
 
     private void RespondToThrustInput()
@@ -153,6 +154,12 @@ public class Rocket : MonoBehaviour {
             thrustFlameParticles.Stop();
             thrustSmokeParticles.Stop();
         }
+    }
+
+    private void ToggleRotation()
+    {
+        isFrozen = !isFrozen;
+        rigidBody.freezeRotation = isFrozen;
     }
 
     private void ApplyThrust()
