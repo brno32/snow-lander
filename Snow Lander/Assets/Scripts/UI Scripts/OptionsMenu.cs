@@ -21,18 +21,18 @@ public class OptionsMenu : MonoBehaviour {
     private string high = "Quality: High";
 
     public PauseMenu pauseMenu;
-    PauseProtocol pauseMenuInteface;
+    PauseProtocol pauseMenuDelegate;
 
     private void Start()
     {
         SetDifficultyText();
-        pauseMenuInteface = pauseMenu;
+        pauseMenuDelegate = pauseMenu;
     }
 
     // Button
     public void ReturnToPause()
     {
-        pauseMenuInteface.GoToPauseMenu();
+        pauseMenuDelegate.GoToPauseMenu();
     }
 
     // Button
@@ -46,6 +46,7 @@ public class OptionsMenu : MonoBehaviour {
     public void CycleQuality()
     {
         QualityTracker.currentQual++;
+        QualitySettings.SetQualityLevel(GetNormalizedQualityIndex());
         SetQualityText();
     }
 
@@ -73,7 +74,7 @@ public class OptionsMenu : MonoBehaviour {
             return;
         }
 
-        int currentNormalizedQaul = QualityTracker.currentQual % 3;
+        int currentNormalizedQaul = GetNormalizedQualityIndex();
         switch (currentNormalizedQaul)
         {
             case 0:
@@ -88,5 +89,10 @@ public class OptionsMenu : MonoBehaviour {
             default:
                 break;
         }
+    }
+
+    int GetNormalizedQualityIndex()
+    {
+        return QualityTracker.currentQual % 3;
     }
 }
