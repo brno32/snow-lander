@@ -231,21 +231,6 @@ Prefab:
       propertyPath: sceneLoader
       value: 
       objectReference: {fileID: 533034908}
-    - target: {fileID: 114526633940976136, guid: 649fec791e8df2a4b80d8189b4aacaf0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1194612170}
-    - target: {fileID: 114526633940976136, guid: 649fec791e8df2a4b80d8189b4aacaf0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToPause
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591736642146916, guid: 649fec791e8df2a4b80d8189b4aacaf0,
-        type: 2}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 270424665}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}
   m_IsPrefabParent: 0
@@ -303,12 +288,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59ebaee55fb24ac4fb0d7407b808f8f0, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &270424665 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114172194490495952, guid: 649fec791e8df2a4b80d8189b4aacaf0,
-    type: 2}
-  m_PrefabInternal: {fileID: 103544336}
-  m_Script: {fileID: 11500000, guid: 0f5e840b4d2d81a499e7b2a5e8b02b6e, type: 3}
 --- !u!1001 &421313435
 Prefab:
   m_ObjectHideFlags: 0
@@ -703,12 +682,6 @@ Light:
   m_PrefabParentObject: {fileID: 108037027739288592, guid: a5d99ffbd8cfab04abc97aa99201de29,
     type: 2}
   m_PrefabInternal: {fileID: 1429166157}
---- !u!114 &1194612170 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114591736642146916, guid: 649fec791e8df2a4b80d8189b4aacaf0,
-    type: 2}
-  m_PrefabInternal: {fileID: 103544336}
-  m_Script: {fileID: 11500000, guid: 1bd8e3ee437b2b740b8ef6f5038c2d7d, type: 3}
 --- !u!1001 &1392864629
 Prefab:
   m_ObjectHideFlags: 0

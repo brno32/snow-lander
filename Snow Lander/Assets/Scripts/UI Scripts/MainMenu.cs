@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour {
     
     public GameObject mainMenuRocket;
 
-    [Tooltip("Needs a reference to the panel that contains the Options Menu UI elements")]
+    [Tooltip("Needs a reference to the containers that holds the Options Menu UI elements")]
     public GameObject optionsMenu;
     
     void Start () {
