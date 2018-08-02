@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+public interface PauseProtocol {
+    void GoToPauseMenu();
+};
+
 public class OptionsMenu : MonoBehaviour {
 
     public Text difficultyDisplayText;
@@ -16,17 +20,29 @@ public class OptionsMenu : MonoBehaviour {
     private string medium = "Quality: Medium";
     private string high = "Quality: High";
 
+    public PauseMenu pauseMenu;
+    PauseProtocol pauseMenuInteface;
+
     private void Start()
     {
         SetDifficultyText();
+        pauseMenuInteface = pauseMenu;
     }
 
+    // Button
+    public void ReturnToPause()
+    {
+        pauseMenuInteface.GoToPauseMenu();
+    }
+
+    // Button
     public void ChangeDifficulty()
     {
         DifficultyTracker.isEasy = !DifficultyTracker.isEasy;
         SetDifficultyText();
     }
 
+    // Button
     public void CycleQuality()
     {
         QualityTracker.currentQual++;
@@ -72,6 +88,5 @@ public class OptionsMenu : MonoBehaviour {
             default:
                 break;
         }
-        print(qualityDisplayText.text);
     }
 }
