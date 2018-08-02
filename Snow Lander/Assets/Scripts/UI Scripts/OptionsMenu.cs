@@ -37,9 +37,12 @@ public class OptionsMenu : MonoBehaviour {
     {
         selectedDifficulty = PlayerPrefs.GetInt("difficulty", 1);
         selectedQualityLvl = PlayerPrefs.GetInt("quality", 2);
+        print(selectedQualityLvl);
 
         SetDifficultyText();
-        SetQualityText();
+        UpdateQuality();
+
+        print(qualityDisplayText.text);
 
         mainMenuDelegate = mainMenu;
         pauseMenuDelegate = pauseMenu;
@@ -71,6 +74,11 @@ public class OptionsMenu : MonoBehaviour {
     public void CycleQuality()
     {
         selectedQualityLvl++;
+        UpdateQuality();
+    }
+
+    private void UpdateQuality()
+    {
         PlayerPrefs.SetInt("quality", GetNormalizedQualityIndex());
         QualitySettings.SetQualityLevel(GetNormalizedQualityIndex());
         SetQualityText();
