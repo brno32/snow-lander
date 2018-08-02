@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenu : MonoBehaviour {
-
-    [Tooltip("Needs a reference to a game object with SceneLoader attached")]
-    public SceneLoader sceneLoader;
+public class MainMenu : MonoBehaviour, OptionsProtocol
+{
     
+    public SceneLoader sceneLoader;
     public GameObject mainMenuRocket;
-
-    [Tooltip("Needs a reference to the containers that holds the Options Menu UI elements")]
     public GameObject optionsMenu;
     
     void Start () {
@@ -30,6 +27,11 @@ public class MainMenu : MonoBehaviour {
     {
         EnableOptions();
         DisableMainMenu();
+    }
+
+    void OptionsProtocol.LeaveOptionsMenu()
+    {
+        Back();
     }
 
     // Button

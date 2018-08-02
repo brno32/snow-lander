@@ -4,41 +4,57 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public interface PauseProtocol {
-    void GoToPauseMenu();
+public interface OptionsProtocol {
+    void LeaveOptionsMenu();
 };
 
 public class OptionsMenu : MonoBehaviour {
 
+    // UI Text References
     public Text difficultyDisplayText;
     public Text qualityDisplayText;
-
+    
     private string easy = "Difficulty: Easy";
     private string hard = "Difficulty: Hard";
-
+    
     private string low = "Quality: Low";
     private string medium = "Quality: Medium";
     private string high = "Quality: High";
 
+    // Saved Data References
     private int selectedDifficulty;
     private int selectedQualityLvl;
 
+    // Delegate
+    public MainMenu mainMenu;
+    OptionsProtocol mainMenuDelegate;
+
+    // Delegate
     public PauseMenu pauseMenu;
-    PauseProtocol pauseMenuDelegate;
+    OptionsProtocol pauseMenuDelegate;
 
     private void Start()
     {
         selectedDifficulty = PlayerPrefs.GetInt("difficulty", 1);
         selectedQualityLvl = PlayerPrefs.GetInt("quality", 2);
+
         SetDifficultyText();
         SetQualityText();
+
+        mainMenuDelegate = mainMenu;
         pauseMenuDelegate = pauseMenu;
+    }
+
+    // Button
+    public void ReturnToMainMenu()
+    {
+        mainMenuDelegate.LeaveOptionsMenu();
     }
 
     // Button
     public void ReturnToPause()
     {
-        pauseMenuDelegate.GoToPauseMenu();
+        pauseMenuDelegate.LeaveOptionsMenu();
     }
 
     // Button

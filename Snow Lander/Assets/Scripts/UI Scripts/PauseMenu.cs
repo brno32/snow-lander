@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.EventSystems;
 
-public class PauseMenu : MonoBehaviour, PauseProtocol
+public class PauseMenu : MonoBehaviour, OptionsProtocol
 {
     
     public SceneLoader sceneLoader;
@@ -60,7 +60,7 @@ public class PauseMenu : MonoBehaviour, PauseProtocol
     }
 
     // Button
-    void PauseProtocol.GoToPauseMenu()
+    void OptionsProtocol.LeaveOptionsMenu()
     {
         DisableOptions();
         EnablePause();
