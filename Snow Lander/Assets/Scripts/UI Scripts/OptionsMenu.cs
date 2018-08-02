@@ -37,12 +37,9 @@ public class OptionsMenu : MonoBehaviour {
     {
         selectedDifficulty = PlayerPrefs.GetInt("difficulty", 1);
         selectedQualityLvl = PlayerPrefs.GetInt("quality", 2);
-        print(selectedQualityLvl);
 
         SetDifficultyText();
         UpdateQuality();
-
-        print(qualityDisplayText.text);
 
         mainMenuDelegate = mainMenu;
         pauseMenuDelegate = pauseMenu;
@@ -66,6 +63,11 @@ public class OptionsMenu : MonoBehaviour {
         if (selectedDifficulty == 1) { selectedDifficulty = 0; }
         else { selectedDifficulty = 1; }
 
+        UpdateDifficulty();
+    }
+
+    private void UpdateDifficulty()
+    {
         PlayerPrefs.SetInt("difficulty", selectedDifficulty);
         SetDifficultyText();
     }
