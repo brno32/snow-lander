@@ -20,12 +20,18 @@ public class OptionsMenu : MonoBehaviour {
     private string medium = "Quality: Medium";
     private string high = "Quality: High";
 
+    private int selectedDifficulty;
+    private int selectedQualityLvl;
+
     public PauseMenu pauseMenu;
     PauseProtocol pauseMenuDelegate;
 
     private void Start()
     {
+        selectedDifficulty = PlayerPrefs.GetInt("difficulty", 1);
+        selectedQualityLvl = PlayerPrefs.GetInt("quality", 2);
         SetDifficultyText();
+        SetQualityText();
         pauseMenuDelegate = pauseMenu;
     }
 
@@ -38,14 +44,18 @@ public class OptionsMenu : MonoBehaviour {
     // Button
     public void ChangeDifficulty()
     {
-        DifficultyTracker.isEasy = !DifficultyTracker.isEasy;
+        if (selectedDifficulty == 1) { selectedDifficulty = 0; }
+        else { selectedDifficulty = 1; }
+
+        PlayerPrefs.SetInt("difficulty", selectedDifficulty);
         SetDifficultyText();
     }
 
     // Button
     public void CycleQuality()
     {
-        QualityTracker.currentQual++;
+        selectedQualityLvl++;
+        PlayerPrefs.SetInt("quality", GetNormalizedQualityIndex());
         QualitySettings.SetQualityLevel(GetNormalizedQualityIndex());
         SetQualityText();
     }
@@ -57,7 +67,7 @@ public class OptionsMenu : MonoBehaviour {
             return;
         }
 
-        if (DifficultyTracker.isEasy)
+        if (selectedDifficulty == 0)
         {
             difficultyDisplayText.text = easy;
         }
@@ -93,6 +103,6 @@ public class OptionsMenu : MonoBehaviour {
 
     int GetNormalizedQualityIndex()
     {
-        return QualityTracker.currentQual % 3;
+        return selectedQualityLvl % 3;
     }
 }

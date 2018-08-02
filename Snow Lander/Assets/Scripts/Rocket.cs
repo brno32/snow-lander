@@ -51,7 +51,7 @@ public class Rocket : MonoBehaviour {
 
     void CheckDifficulty()
     {
-        if (DifficultyTracker.isEasy)
+        if (PlayerPrefs.GetInt("difficulty") == 0)
         {
             rigidBody.useGravity = false;
             rigidBody.drag = 1f;

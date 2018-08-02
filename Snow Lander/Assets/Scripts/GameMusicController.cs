@@ -25,7 +25,6 @@ public class GameMusicController : MonoBehaviour {
             // Kill the music if we're about to load the main menu
             gameObject.SetActive(false);
             Destroy(gameObject);
-            print("destroyed");
         }
     }
 }
