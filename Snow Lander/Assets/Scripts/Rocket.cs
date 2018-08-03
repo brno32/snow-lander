@@ -9,7 +9,7 @@ public class Rocket : MonoBehaviour {
     // EXTERNAL COMPONENTS
     Rigidbody rigidBody;
     AudioSource audioSource;
-    new Renderer renderer;
+    Renderer renderer;
     public GameObject mobileUI;
 
     [Header("Controller Parameters")]
@@ -106,7 +106,7 @@ public class Rocket : MonoBehaviour {
 
     private void RespondToRotateInput()
     {
-        ToggleRotation();
+        ToggleFrozen();
 
         // Z direction is an arrow pointing into the screen
         // +1 when thrown right. -1 when thrown left
@@ -135,7 +135,7 @@ public class Rocket : MonoBehaviour {
         
         transform.Rotate(Vector3.forward * deltaRotate);
 
-        ToggleRotation();
+        ToggleFrozen();
     }
 
     private void RespondToThrustInput()
@@ -156,7 +156,7 @@ public class Rocket : MonoBehaviour {
         }
     }
 
-    private void ToggleRotation()
+    private void ToggleFrozen()
     {
         isFrozen = !isFrozen;
         rigidBody.freezeRotation = isFrozen;
