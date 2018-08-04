@@ -10,11 +10,13 @@ public class MobileControlRigKiller : MonoBehaviour {
 
     private Text text;
     private Image uiLabel;
+    private Slider slider;
 
 	// Use this for initialization
 	void Start () {
         text = gameObject.GetComponent<Text>();
         uiLabel = gameObject.GetComponent<Image>();
+        slider = gameObject.GetComponent<Slider>();
     }
 	
 	// Update is called once per frame
@@ -24,11 +26,13 @@ public class MobileControlRigKiller : MonoBehaviour {
         {
             CheckText(false);
             CheckUILabel(false);
+            CheckSlider(false);
         }
         else
         {
             CheckText(true);
             CheckUILabel(true);
+            CheckSlider(true);
         }
 	}
 
@@ -45,6 +49,15 @@ public class MobileControlRigKiller : MonoBehaviour {
         if (uiLabel != null)
         {
             uiLabel.enabled = isEnabled;
+        }
+    }
+
+    void CheckSlider(bool isEnabled)
+    {
+        if (slider != null)
+        {
+            slider.enabled = isEnabled;
+            print(slider.enabled);
         }
     }
 }
