@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Rocket : MonoBehaviour {
@@ -129,6 +130,8 @@ public class Rocket : MonoBehaviour {
             }
         }
 
+
+
         // In this orientation, a positive vector means a counter-clockwise rotation
         // Pressing right should rotate the Rocket clock-wise, so flip vector with negative sign
         float deltaRotate = -torque * zThrow * Time.deltaTime;
@@ -156,7 +159,24 @@ public class Rocket : MonoBehaviour {
         }
     }
 
+    public void RespondToSlider(Slider slider)
+    {
+        Freeze();
+
+        transform.eulerAngles = new Vector3 (
+            transform.eulerAngles.x,
+            transform.eulerAngles.y,
+            slider.value
+        );
+    }
+
     private void ToggleFrozen()
+    {
+        isFrozen = !isFrozen;
+        rigidBody.freezeRotation = isFrozen;
+    }
+
+    private void Freeze()
     {
         isFrozen = !isFrozen;
         rigidBody.freezeRotation = isFrozen;
