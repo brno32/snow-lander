@@ -8,11 +8,17 @@ public interface OptionsProtocol {
     void LeaveOptionsMenu();
 };
 
+public interface MobileProtocol
+{
+    void UpdateRotateControls(int selectedRotateControls);
+}
+
 public class OptionsMenu : MonoBehaviour {
 
     // UI Text References
     public Text difficultyDisplayText;
     public Text qualityDisplayText;
+    public Text rotateControlsText;
     
     private string easy = "Difficulty: Easy";
     private string hard = "Difficulty: Hard";
@@ -21,9 +27,13 @@ public class OptionsMenu : MonoBehaviour {
     private string medium = "Quality: Medium";
     private string high = "Quality: High";
 
+    private string useSlider = "Use Slider";
+    private string dontUserSlider = "Use Buttons";
+
     // Saved Data References
     private int selectedDifficulty;
     private int selectedQualityLvl;
+    private int selectedRotateControls;
 
     // Delegate
     public MainMenu mainMenu;
@@ -33,16 +43,22 @@ public class OptionsMenu : MonoBehaviour {
     public PauseMenu pauseMenu;
     OptionsProtocol pauseMenuDelegate;
 
+    // Delegate
+    public MobileController mobileControlRig;
+    MobileProtocol mobileControlDelegate;
+
     private void Start()
     {
         selectedDifficulty = PlayerPrefs.GetInt("difficulty", 1);
         selectedQualityLvl = PlayerPrefs.GetInt("quality", 2);
+        selectedRotateControls = PlayerPrefs.GetInt("controls", 0);
 
         UpdateDifficulty();
         UpdateQuality();
 
         mainMenuDelegate = mainMenu;
         pauseMenuDelegate = pauseMenu;
+        mobileControlDelegate = mobileControlRig;
     }
 
     // Button
@@ -55,6 +71,30 @@ public class OptionsMenu : MonoBehaviour {
     public void ReturnToPause()
     {
         pauseMenuDelegate.LeaveOptionsMenu();
+    }
+
+    // Button
+    public void ToggleRotateControls()
+    {
+        if (selectedRotateControls == 1) { selectedRotateControls = 0; }
+        else { selectedRotateControls = 1; }
+
+        UpdateControls();
+        mobileControlDelegate.UpdateRotateControls(selectedRotateControls);
+    }
+
+    private void UpdateControls()
+    {
+        PlayerPrefs.SetInt("controls", selectedRotateControls);
+         
+        if (selectedRotateControls == 0)
+        {
+            rotateControlsText.text = dontUserSlider;
+        }
+        else
+        {
+            rotateControlsText.text = useSlider;
+        }
     }
 
     // Button

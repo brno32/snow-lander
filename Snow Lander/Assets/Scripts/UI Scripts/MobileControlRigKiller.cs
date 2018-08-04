@@ -57,7 +57,6 @@ public class MobileControlRigKiller : MonoBehaviour {
         if (slider != null)
         {
             slider.enabled = isEnabled;
-            print(slider.enabled);
         }
     }
 }
