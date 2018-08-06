@@ -60,7 +60,6 @@ GameObject:
   - component: {fileID: 114660404404989374}
   - component: {fileID: 114895395193710562}
   - component: {fileID: 114774913707961814}
-  - component: {fileID: 114535520294568046}
   m_Layer: 5
   m_Name: Thrust Button
   m_TagString: Untagged
@@ -95,10 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 224015566082121324}
   - component: {fileID: 114224352301538604}
-  - component: {fileID: 114541631672618918}
   m_Layer: 5
   m_Name: Slider
-  m_TagString: Untagged
+  m_TagString: Slider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,10 +111,9 @@ GameObject:
   - component: {fileID: 224421515236240924}
   - component: {fileID: 222317456437171592}
   - component: {fileID: 114539639624466926}
-  - component: {fileID: 114122264215983178}
   m_Layer: 5
   m_Name: Rotate Btn
-  m_TagString: Untagged
+  m_TagString: Rotate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +130,6 @@ GameObject:
   - component: {fileID: 114940685983834658}
   - component: {fileID: 114814976295028268}
   - component: {fileID: 114603261521149492}
-  - component: {fileID: 114593535809609348}
   m_Layer: 5
   m_Name: Pause Button
   m_TagString: Untagged
@@ -274,6 +270,7 @@ GameObject:
   - component: {fileID: 114413437976659834}
   - component: {fileID: 114526345860258126}
   - component: {fileID: 114894079983639882}
+  - component: {fileID: 114532380023224622}
   m_Layer: 5
   m_Name: Mobile Controls
   m_TagString: Untagged
@@ -436,17 +433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3f9936985484640a4f1e010a427663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114122264215983178
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1330425013517838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3f9936985484640a4f1e010a427663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114124911578897508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,8 +494,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 224604762910735852}
   m_HandleRect: {fileID: 224655064222047430}
   m_Direction: 0
-  m_MinValue: -90
-  m_MaxValue: 90
+  m_MinValue: -180
+  m_MaxValue: 180
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -795,15 +781,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Right
---- !u!114 &114535520294568046
+--- !u!114 &114532380023224622
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1128944006216946}
+  m_GameObject: {fileID: 1926713681237572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3f9936985484640a4f1e010a427663, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c217c112bfc78147a7fff0360f74c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114539639624466926
@@ -833,17 +819,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114541631672618918
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1259268322870558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3f9936985484640a4f1e010a427663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114570175478178296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -877,17 +852,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '>'
---- !u!114 &114593535809609348
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1334349102467560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3f9936985484640a4f1e010a427663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114603261521149492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1315,7 +1279,7 @@ RectTransform:
   m_GameObject: {fileID: 1259268322870558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.85, y: 1.6260011, z: 1}
+  m_LocalScale: {x: 1.0399221, y: 2.959323, z: 1}
   m_Children:
   - {fileID: 224975314841783814}
   - {fileID: 224271263990967544}
@@ -1325,8 +1289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -219.09996, y: -186.5}
-  m_SizeDelta: {x: 173.63, y: 22.94}
+  m_AnchoredPosition: {x: -217, y: -182.7}
+  m_SizeDelta: {x: 186.88, y: 20.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224027566762855132
 RectTransform:
@@ -1476,7 +1440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2, y: 0}
   m_AnchorMax: {x: 0.2, y: 0}
-  m_AnchoredPosition: {x: 20.900024, y: 40.099976}
+  m_AnchoredPosition: {x: 20.900024, y: 40.1}
   m_SizeDelta: {x: 69, y: 15}
   m_Pivot: {x: 0.5, y: 0.49999988}
 --- !u!224 &224556135933631404

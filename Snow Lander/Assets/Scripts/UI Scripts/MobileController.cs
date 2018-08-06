@@ -9,15 +9,16 @@ public class MobileController : MonoBehaviour, MobileProtocol
     private Image uiLabel;
     private Slider slider;
 
-    // private GameObject[] buttons;
+    private bool useSlider = false;
+    
     private List<GameObject> buttons = new List<GameObject>();
 
     void Start()
     {
-        for (int index = 0; index < transform.childCount; index++)
+        GatherMobileButtons(transform);
+        foreach (GameObject btn in buttons)
         {
-            GameObject mobileBtn = transform.GetChild(index).gameObject;
-            buttons.Add(mobileBtn);
+            print(btn);
         }
     }
 
@@ -39,6 +40,25 @@ public class MobileController : MonoBehaviour, MobileProtocol
             CheckText(text, isEnabled);
             CheckUILabel(uiLabel, isEnabled);
             CheckSlider(slider, isEnabled);
+
+            //if (btn.tag == "Slider")
+            //{
+            //    if (btn.activeSelf)
+            //    {
+            //        CheckText(text, useSlider);
+            //        CheckUILabel(uiLabel, useSlider);
+            //        CheckSlider(slider, useSlider);
+            //    }
+            //}
+            //if (btn.tag == "Rotate")
+            //{
+            //    if (btn.activeSelf)
+            //    {
+            //        CheckText(text, !useSlider);
+            //        CheckUILabel(uiLabel, !useSlider);
+            //        CheckSlider(slider, !useSlider);
+            //    }
+            //}
         }
     }
 
@@ -47,13 +67,21 @@ public class MobileController : MonoBehaviour, MobileProtocol
          
         if (selectedRotateControls == 0)
         {
-            //slider.SetActive(false);
-            //rotateBtn.SetActive(true);
+            useSlider = false;
         }
         else
         {
-            //slider.SetActive(true);
-            //rotateBtn.SetActive(false);
+            useSlider = true;
+        }
+    }
+
+    void GatherMobileButtons(Transform _transform)
+    {
+        for (int index = 0; index < _transform.childCount; index++)
+        {
+            Transform mobileBtn = _transform.GetChild(index);
+            buttons.Add(mobileBtn.gameObject);
+            GatherMobileButtons(mobileBtn);
         }
     }
 
@@ -73,7 +101,7 @@ public class MobileController : MonoBehaviour, MobileProtocol
         }
     }
 
-    void CheckSlider(Slider slider, bool isEnabled)
+    void CheckSlider(Slider slider,  bool isEnabled)
     {
         if (slider != null)
         {

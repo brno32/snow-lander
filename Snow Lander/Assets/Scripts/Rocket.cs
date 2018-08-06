@@ -10,7 +10,7 @@ public class Rocket : MonoBehaviour {
     // EXTERNAL COMPONENTS
     Rigidbody rigidBody;
     AudioSource audioSource;
-    Renderer renderer;
+    new Renderer renderer;
     public GameObject mobileUI;
 
     [Header("Controller Parameters")]
@@ -166,7 +166,7 @@ public class Rocket : MonoBehaviour {
         transform.eulerAngles = new Vector3 (
             transform.eulerAngles.x,
             transform.eulerAngles.y,
-            slider.value
+            -slider.value
         );
     }
 
