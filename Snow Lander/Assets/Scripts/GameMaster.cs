@@ -25,6 +25,9 @@ public class GameMaster : MonoBehaviour {
         numOfLevels = SceneManager.sceneCountInBuildSettings - 1;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
 
+        
+        PlayerPrefs.SetInt("level", currentLevel);
+
         if (levelDisplay != null)
         {
             levelDisplay.text = currentLevel + "/" + numOfLevels;
@@ -32,6 +35,8 @@ public class GameMaster : MonoBehaviour {
     }
 
     void Update() {
+        //print(currentLevel);
+        //print(PlayerPrefs.GetInt("level"));
         switch (currentGameState)
         {
             case GameState.Alive:

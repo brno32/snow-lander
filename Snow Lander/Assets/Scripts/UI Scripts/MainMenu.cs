@@ -9,17 +9,20 @@ public class MainMenu : MonoBehaviour, OptionsProtocol
     public SceneLoader sceneLoader;
     public GameObject mainMenuRocket;
     public GameObject optionsMenu;
+    public GameObject levelMenu;
     
     void Start () {
         // Leave UI elements unchecked/checked freely in editor
         EnableMainMenu();
         DisableOptions();
+        DisableLevelMenu();
     }
 
     // Button
     public void Play()
     {
-        sceneLoader.BeginLoadingNextScene(true);
+        DisableMainMenu();
+        EnableLevelMenu();
     }
 
     // Button
@@ -68,5 +71,15 @@ public class MainMenu : MonoBehaviour, OptionsProtocol
     {
         gameObject.SetActive(false);
         mainMenuRocket.SetActive(false);
+    }
+
+    private void EnableLevelMenu()
+    {
+        levelMenu.SetActive(true);
+    }
+
+    private void DisableLevelMenu()
+    {
+        levelMenu.SetActive(false);
     }
 }
