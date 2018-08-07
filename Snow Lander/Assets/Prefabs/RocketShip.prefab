@@ -571,7 +571,6 @@ MonoBehaviour:
   thrustSmokeParticles: {fileID: 198892627353565408}
   winParticles: {fileID: 198976592182628622}
   deathParticles: {fileID: 198977595913010158}
-  thrustSound: {fileID: 8300000, guid: 7c8bfd94fe300d94395adb737ce68a06, type: 3}
   winSound: {fileID: 8300000, guid: e08b739ebba87be4daf86cc9ada31e4b, type: 3}
   deathSound: {fileID: 8300000, guid: 89854363138758a48b7f5ca9d4e33c2f, type: 3}
 --- !u!198 &198066989611336476

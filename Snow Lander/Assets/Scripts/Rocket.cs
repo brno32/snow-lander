@@ -24,7 +24,6 @@ public class Rocket : MonoBehaviour {
     public ParticleSystem deathParticles;
 
     [Header("Sound Effects")]
-    public AudioClip thrustSound;
     public AudioClip winSound;
     public AudioClip deathSound;
 
@@ -176,12 +175,7 @@ public class Rocket : MonoBehaviour {
         float deltaThrust = thrust * Time.deltaTime;
 
         rigidBody.AddRelativeForce(Vector3.up * deltaThrust);
-
-        // Play the thrust sound if it isn't already playing
-        if (!audioSource.isPlaying)
-        {
-            audioSource.PlayOneShot(thrustSound);
-        }
+        
         thrustFlameParticles.Play();
         thrustSmokeParticles.Play();
     }
