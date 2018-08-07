@@ -27,9 +27,6 @@ public class OptionsMenu : MonoBehaviour {
     private string medium = "Quality: Medium";
     private string high = "Quality: High";
 
-    private string useSlider = "Use Slider";
-    private string dontUserSlider = "Use Buttons";
-
     // Saved Data References
     private int selectedDifficulty;
     private int selectedQualityLvl;
@@ -58,7 +55,6 @@ public class OptionsMenu : MonoBehaviour {
 
         mainMenuDelegate = mainMenu;
         pauseMenuDelegate = pauseMenu;
-        mobileControlDelegate = mobileControlRig;
     }
 
     // Button
@@ -71,30 +67,6 @@ public class OptionsMenu : MonoBehaviour {
     public void ReturnToPause()
     {
         pauseMenuDelegate.LeaveOptionsMenu();
-    }
-
-    // Button
-    public void ToggleRotateControls()
-    {
-        if (selectedRotateControls == 1) { selectedRotateControls = 0; }
-        else { selectedRotateControls = 1; }
-
-        UpdateControls();
-        mobileControlDelegate.UpdateRotateControls(selectedRotateControls);
-    }
-
-    private void UpdateControls()
-    {
-        PlayerPrefs.SetInt("controls", selectedRotateControls);
-         
-        if (selectedRotateControls == 0)
-        {
-            rotateControlsText.text = dontUserSlider;
-        }
-        else
-        {
-            rotateControlsText.text = useSlider;
-        }
     }
 
     // Button

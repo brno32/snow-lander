@@ -3,24 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MobileController : MonoBehaviour, MobileProtocol
+public class MobileController : MonoBehaviour
 {
     private Text text;
     private Image uiLabel;
-    private Slider slider;
-
-    private bool useSlider = false;
     
     private List<GameObject> buttons = new List<GameObject>();
-
-    void Start()
-    {
-        GatherMobileButtons(transform);
-        foreach (GameObject btn in buttons)
-        {
-            print(btn);
-        }
-    }
 
     void Update()
     {
@@ -28,7 +16,6 @@ public class MobileController : MonoBehaviour, MobileProtocol
         {
             Text text = btn.GetComponent<Text>();
             Image uiLabel = btn.GetComponent<Image>();
-            Slider slider = btn.GetComponent<Slider>();
 
             bool isEnabled = true;
 
@@ -39,39 +26,6 @@ public class MobileController : MonoBehaviour, MobileProtocol
 
             CheckText(text, isEnabled);
             CheckUILabel(uiLabel, isEnabled);
-            CheckSlider(slider, isEnabled);
-
-            //if (btn.tag == "Slider")
-            //{
-            //    if (btn.activeSelf)
-            //    {
-            //        CheckText(text, useSlider);
-            //        CheckUILabel(uiLabel, useSlider);
-            //        CheckSlider(slider, useSlider);
-            //    }
-            //}
-            //if (btn.tag == "Rotate")
-            //{
-            //    if (btn.activeSelf)
-            //    {
-            //        CheckText(text, !useSlider);
-            //        CheckUILabel(uiLabel, !useSlider);
-            //        CheckSlider(slider, !useSlider);
-            //    }
-            //}
-        }
-    }
-
-    void MobileProtocol.UpdateRotateControls(int selectedRotateControls)
-    {
-         
-        if (selectedRotateControls == 0)
-        {
-            useSlider = false;
-        }
-        else
-        {
-            useSlider = true;
         }
     }
 
@@ -98,14 +52,6 @@ public class MobileController : MonoBehaviour, MobileProtocol
         if (uiLabel != null)
         {
             uiLabel.enabled = isEnabled;
-        }
-    }
-
-    void CheckSlider(Slider slider,  bool isEnabled)
-    {
-        if (slider != null)
-        {
-            slider.enabled = isEnabled;
         }
     }
 }

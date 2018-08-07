@@ -159,17 +159,6 @@ public class Rocket : MonoBehaviour {
         }
     }
 
-    public void RespondToSlider(Slider slider)
-    {
-        Freeze();
-
-        transform.eulerAngles = new Vector3 (
-            transform.eulerAngles.x,
-            transform.eulerAngles.y,
-            -slider.value
-        );
-    }
-
     private void ToggleFrozen()
     {
         isFrozen = !isFrozen;
