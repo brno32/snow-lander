@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647f507d186f17c4f9893b4cc799c9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocity: 100
+  angularVelocity: 80
 --- !u!1 &238745477 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1525284555961476, guid: 027468d3c8dc34f44b3479ffa8597a45,
