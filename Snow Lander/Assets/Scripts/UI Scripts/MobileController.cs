@@ -39,19 +39,19 @@ public class MobileController : MonoBehaviour
         }
     }
 
-    void CheckText(Text text, bool isEnabled)
+    void CheckText(Text text, bool _isEnabled)
     {
         if (text != null)
         {
-            text.enabled = isEnabled;
+            text.enabled = _isEnabled;
         }
     }
 
-    void CheckUILabel(Image uiLabel, bool isEnabled)
+    void CheckUILabel(Image uiLabel, bool _isEnabled)
     {
         if (uiLabel != null)
         {
-            uiLabel.enabled = isEnabled;
+            uiLabel.enabled = _isEnabled;
         }
     }
 }

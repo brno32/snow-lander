@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour, OptionsProtocol
 {
-    
+    // For returning to main menu
     public SceneLoader sceneLoader;
 
     // UI Elements
