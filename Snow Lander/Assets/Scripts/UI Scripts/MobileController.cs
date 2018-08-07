@@ -10,6 +10,12 @@ public class MobileController : MonoBehaviour
     
     private List<GameObject> buttons = new List<GameObject>();
 
+    void Start()
+    {
+        GatherMobileButtons(transform);
+    }
+
+
     void Update()
     {
         foreach (GameObject btn in buttons)
