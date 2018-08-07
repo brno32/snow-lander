@@ -30,7 +30,6 @@ public class OptionsMenu : MonoBehaviour {
     // Saved Data References
     private int selectedDifficulty;
     private int selectedQualityLvl;
-    private int selectedRotateControls;
 
     // Delegate
     public MainMenu mainMenu;
@@ -48,7 +47,6 @@ public class OptionsMenu : MonoBehaviour {
     {
         selectedDifficulty = PlayerPrefs.GetInt("difficulty", 1);
         selectedQualityLvl = PlayerPrefs.GetInt("quality", 2);
-        selectedRotateControls = PlayerPrefs.GetInt("controls", 0);
 
         UpdateDifficulty();
         UpdateQuality();
