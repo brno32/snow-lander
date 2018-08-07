@@ -21,6 +21,14 @@ public class MainMenu : MonoBehaviour, OptionsProtocol
     // Button
     public void Play()
     {
+        // 100 is dummy number to represent if the user has never played before
+        int lastPlayedLevel = PlayerPrefs.GetInt("level", 100);
+
+        if (lastPlayedLevel == 100)
+        {
+            sceneLoader.BeginLoadingNextScene(true);
+        }
+
         DisableMainMenu();
         EnableLevelMenu();
     }

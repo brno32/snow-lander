@@ -35,8 +35,6 @@ public class GameMaster : MonoBehaviour {
     }
 
     void Update() {
-        //print(currentLevel);
-        //print(PlayerPrefs.GetInt("level"));
         switch (currentGameState)
         {
             case GameState.Alive:
