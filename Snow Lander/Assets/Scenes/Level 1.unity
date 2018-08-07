@@ -381,30 +381,6 @@ Prefab:
       propertyPath: mobileUI
       value: 
       objectReference: {fileID: 725633902}
-    - target: {fileID: 4594806690978276, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4244620864724618, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4594806690978276, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4244620864724618, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4594806690978276, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4244620864724618, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 7.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecc979df38d84304c8b6c654ccc39fb8, type: 2}
   m_IsPrefabParent: 0
