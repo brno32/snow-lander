@@ -890,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56657778a3cd8844d9f8ebc90677b29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoader: {fileID: 0}
+  sceneLoader: {fileID: 1169218057}
   mainMenuRocket: {fileID: 1530868370}
   optionsMenu: {fileID: 2019944768}
   levelMenu: {fileID: 1456988760}
@@ -1657,6 +1657,7 @@ GameObject:
   - component: {fileID: 1169218055}
   - component: {fileID: 1169218054}
   - component: {fileID: 1169218053}
+  - component: {fileID: 1169218057}
   m_Layer: 5
   m_Name: Main Menu UI
   m_TagString: Untagged
@@ -1746,6 +1747,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1169218057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169218052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826dabffd59178f438152bd0274a547e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadLevelDelay: 1.25
+  loadMainMenuDelay: 3
 --- !u!1 &1218708935
 GameObject:
   m_ObjectHideFlags: 0

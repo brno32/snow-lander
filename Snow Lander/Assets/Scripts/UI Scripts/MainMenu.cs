@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour, OptionsProtocol
 {
-    
-    public SceneLoader sceneLoader;
     public GameObject mainMenuRocket;
     public GameObject optionsMenu;
     public GameObject levelMenu;
@@ -23,10 +22,11 @@ public class MainMenu : MonoBehaviour, OptionsProtocol
     {
         // 100 is dummy number to represent if the user has never played before
         int lastPlayedLevel = PlayerPrefs.GetInt("level", 100);
-
+        
         if (lastPlayedLevel == 100)
         {
-            sceneLoader.BeginLoadingNextScene(true);
+            SceneManager.LoadScene(2);
+            return;
         }
 
         DisableMainMenu();

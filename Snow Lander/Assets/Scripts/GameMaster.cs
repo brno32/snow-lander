@@ -52,6 +52,7 @@ public class GameMaster : MonoBehaviour {
                 break;
             case GameState.Win:
                 winMessage.SetActive(true);
+                PlayerPrefs.SetInt("level", 100);
                 sceneLoader.BeginLoadingMainMenu();
                 break;
             default:
