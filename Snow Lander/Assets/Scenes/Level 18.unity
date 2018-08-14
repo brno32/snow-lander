@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementFactor: 6
-  angularSpeed: 3
+  angularSpeed: 2
   movementDirection: {x: 0, y: 1, z: 0}
   periodOffset: 0
 --- !u!4 &238745479 stripped
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementFactor: 6
-  angularSpeed: 3
+  angularSpeed: 2
   movementDirection: {x: 0, y: 1, z: 0}
   periodOffset: 0
 --- !u!1 &508551285
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementFactor: 6
-  angularSpeed: 3
+  angularSpeed: 2
   movementDirection: {x: 0, y: 1, z: 0}
   periodOffset: 0
 --- !u!1 &661597625 stripped
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementFactor: 6
-  angularSpeed: 3
+  angularSpeed: 2
   movementDirection: {x: 0, y: 1, z: 0}
   periodOffset: 0
 --- !u!1001 &694724930
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementFactor: 6
-  angularSpeed: 3
+  angularSpeed: 2
   movementDirection: {x: 0, y: 1, z: 0}
   periodOffset: 0
 --- !u!1001 &906792353
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementFactor: 6
-  angularSpeed: 3
+  angularSpeed: 2
   movementDirection: {x: 0, y: 1, z: 0}
   periodOffset: 0
 --- !u!4 &1185665164 stripped
@@ -2063,7 +2063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementFactor: 6
-  angularSpeed: 3
+  angularSpeed: 2
   movementDirection: {x: 0, y: 1, z: 0}
   periodOffset: 0
 --- !u!4 &1782968682 stripped
@@ -2318,7 +2318,7 @@ Prefab:
     - target: {fileID: 114526633940976136, guid: 649fec791e8df2a4b80d8189b4aacaf0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToPause
+      value: ToggleSound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}

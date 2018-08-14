@@ -22,8 +22,7 @@ public class GameMusicController : MonoBehaviour {
         if (GameMaster.currentGameState == GameMaster.GameState.Win ||
             GameMaster.currentGameState == GameMaster.GameState.MainMenu)
         {
-            // Kill the music if we're about to load the main menu
-            gameObject.SetActive(false);
+            // Kill music if we're about to load the main menu
             Destroy(gameObject);
         }
     }

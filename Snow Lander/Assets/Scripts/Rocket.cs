@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Rocket : MonoBehaviour {
@@ -9,7 +6,7 @@ public class Rocket : MonoBehaviour {
     // EXTERNAL COMPONENTS
     Rigidbody rigidBody;
     AudioSource audioSource;
-    Renderer renderer;
+    new Renderer renderer;
     public GameObject mobileUI;
 
     [Header("Controller Parameters")]
@@ -23,7 +20,6 @@ public class Rocket : MonoBehaviour {
     public ParticleSystem deathParticles;
 
     [Header("Sound Effects")]
-    public AudioClip thrustSound;
     public AudioClip winSound;
     public AudioClip deathSound;
 
@@ -41,6 +37,13 @@ public class Rocket : MonoBehaviour {
     {
         if (!RocketIsAlive())
         {
+            if (RocketIsDead())
+            {
+                // Turn on ragdoll effects even if we're on easy
+                rigidBody.useGravity = true;
+                rigidBody.drag = .25f;
+            }
+
             return;
         }
 
@@ -109,11 +112,12 @@ public class Rocket : MonoBehaviour {
         ToggleFrozen();
 
         // Z direction is an arrow pointing into the screen
-        // +1 when thrown right. -1 when thrown left
+        // -1 when thrown right. +1 when thrown left
         float zThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         
         if (mobileUI.activeSelf)
         {
+            // Cancel input if receiving two instructions at once
             if (CrossPlatformInputManager.GetButton("Left") && 
                 CrossPlatformInputManager.GetButton("Right"))
             {
@@ -121,17 +125,17 @@ public class Rocket : MonoBehaviour {
             }
             else if(CrossPlatformInputManager.GetButton("Left"))
             {
-                zThrow = -1f;
+                zThrow = 1f;
             }
             else if (CrossPlatformInputManager.GetButton("Right"))
             {
-                zThrow = 1f;
+                zThrow = -1f;
             }
         }
 
         // In this orientation, a positive vector means a counter-clockwise rotation
         // Pressing right should rotate the Rocket clock-wise, so flip vector with negative sign
-        float deltaRotate = -torque * zThrow * Time.deltaTime;
+        float deltaRotate = torque * zThrow * Time.deltaTime;
         
         transform.Rotate(Vector3.forward * deltaRotate);
 
@@ -162,17 +166,18 @@ public class Rocket : MonoBehaviour {
         rigidBody.freezeRotation = isFrozen;
     }
 
+    private void Freeze()
+    {
+        isFrozen = !isFrozen;
+        rigidBody.freezeRotation = isFrozen;
+    }
+
     private void ApplyThrust()
     {
         float deltaThrust = thrust * Time.deltaTime;
 
         rigidBody.AddRelativeForce(Vector3.up * deltaThrust);
-
-        // Play the thrust sound if it isn't already playing
-        if (!audioSource.isPlaying)
-        {
-            audioSource.PlayOneShot(thrustSound);
-        }
+        
         thrustFlameParticles.Play();
         thrustSmokeParticles.Play();
     }
@@ -211,5 +216,10 @@ public class Rocket : MonoBehaviour {
     private static bool RocketIsAlive()
     {
         return GameMaster.currentGameState == GameMaster.GameState.Alive;
+    }
+
+    private static bool RocketIsDead()
+    {
+        return GameMaster.currentGameState == GameMaster.GameState.Dead;
     }
 }

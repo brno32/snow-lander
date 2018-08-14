@@ -2,24 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour, OptionsProtocol
 {
-    
-    public SceneLoader sceneLoader;
     public GameObject mainMenuRocket;
     public GameObject optionsMenu;
+    public GameObject levelMenu;
     
     void Start () {
         // Leave UI elements unchecked/checked freely in editor
         EnableMainMenu();
         DisableOptions();
+        DisableLevelMenu();
     }
 
     // Button
     public void Play()
     {
-        sceneLoader.BeginLoadingNextScene(true);
+        // 100 is dummy number to represent if the user has never played before
+        int lastPlayedLevel = PlayerPrefs.GetInt("level", 100);
+        
+        if (lastPlayedLevel == 100)
+        {
+            SceneManager.LoadScene(2);
+            return;
+        }
+
+        DisableMainMenu();
+        EnableLevelMenu();
     }
 
     // Button
@@ -68,5 +79,15 @@ public class MainMenu : MonoBehaviour, OptionsProtocol
     {
         gameObject.SetActive(false);
         mainMenuRocket.SetActive(false);
+    }
+
+    private void EnableLevelMenu()
+    {
+        levelMenu.SetActive(true);
+    }
+
+    private void DisableLevelMenu()
+    {
+        levelMenu.SetActive(false);
     }
 }

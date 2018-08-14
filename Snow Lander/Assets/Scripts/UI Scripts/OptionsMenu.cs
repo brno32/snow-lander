@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public interface OptionsProtocol {
     void LeaveOptionsMenu();
 };
+
+public interface MobileProtocol
+{
+    void UpdateRotateControls(int selectedRotateControls);
+}
 
 public class OptionsMenu : MonoBehaviour {
 
     // UI Text References
     public Text difficultyDisplayText;
     public Text qualityDisplayText;
+    public Text soundPreferenceText;
     
     private string easy = "Difficulty: Easy";
     private string hard = "Difficulty: Hard";
@@ -21,9 +28,13 @@ public class OptionsMenu : MonoBehaviour {
     private string medium = "Quality: Medium";
     private string high = "Quality: High";
 
+    private string soundOn = "Sound: On";
+    private string soundOff = "Sound: Off";
+
     // Saved Data References
     private int selectedDifficulty;
     private int selectedQualityLvl;
+    private int selectedSoundPreference;
 
     // Delegate
     public MainMenu mainMenu;
@@ -37,9 +48,11 @@ public class OptionsMenu : MonoBehaviour {
     {
         selectedDifficulty = PlayerPrefs.GetInt("difficulty", 1);
         selectedQualityLvl = PlayerPrefs.GetInt("quality", 2);
+        selectedSoundPreference = PlayerPrefs.GetInt("sound", 1);
 
         UpdateDifficulty();
         UpdateQuality();
+        UpdateSound();
 
         mainMenuDelegate = mainMenu;
         pauseMenuDelegate = pauseMenu;
@@ -64,6 +77,37 @@ public class OptionsMenu : MonoBehaviour {
         else { selectedDifficulty = 1; }
 
         UpdateDifficulty();
+    }
+
+    // Button
+    public void ToggleSound()
+    {
+        if (selectedSoundPreference == 0)
+        {
+            selectedSoundPreference = 1;
+        }
+        else
+        {
+            selectedSoundPreference = 0;
+        }
+
+        UpdateSound();
+    }
+
+    private void UpdateSound()
+    {
+        if (selectedSoundPreference != 0)
+        {
+            AudioListener.volume = 1f;
+            soundPreferenceText.text = soundOn;
+        }
+        else
+        {
+            AudioListener.volume = 0f;
+            soundPreferenceText.text = soundOff;
+        }
+
+        PlayerPrefs.SetInt("sound", selectedSoundPreference);
     }
 
     private void UpdateDifficulty()
@@ -109,9 +153,8 @@ public class OptionsMenu : MonoBehaviour {
         {
             return;
         }
-
-        int currentNormalizedQaul = GetNormalizedQualityIndex();
-        switch (currentNormalizedQaul)
+        
+        switch (GetNormalizedQualityIndex())
         {
             case 0:
                 qualityDisplayText.text = low;

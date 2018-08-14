@@ -938,7 +938,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4286270527325000, guid: 027468d3c8dc34f44b3479ffa8597a45, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.82817364
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4286270527325000, guid: 027468d3c8dc34f44b3479ffa8597a45, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1002,7 +1002,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4286270527325000, guid: 027468d3c8dc34f44b3479ffa8597a45, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.82817364
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4286270527325000, guid: 027468d3c8dc34f44b3479ffa8597a45, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1227,7 +1227,7 @@ Prefab:
     - target: {fileID: 114526633940976136, guid: 649fec791e8df2a4b80d8189b4aacaf0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToPause
+      value: ToggleSound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}

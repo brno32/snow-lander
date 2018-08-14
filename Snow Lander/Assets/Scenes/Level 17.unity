@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647f507d186f17c4f9893b4cc799c9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocity: 100
+  angularVelocity: 80
 --- !u!1 &238745477 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1525284555961476, guid: 027468d3c8dc34f44b3479ffa8597a45,
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementFactor: 6
-  angularSpeed: 3
+  angularSpeed: 2
   movementDirection: {x: 0, y: 1, z: 0}
   periodOffset: 0
 --- !u!1001 &265513181
@@ -1933,7 +1933,7 @@ Prefab:
     - target: {fileID: 114526633940976136, guid: 649fec791e8df2a4b80d8189b4aacaf0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToPause
+      value: ToggleSound
       objectReference: {fileID: 0}
     - target: {fileID: 114520858102681852, guid: 649fec791e8df2a4b80d8189b4aacaf0,
         type: 2}

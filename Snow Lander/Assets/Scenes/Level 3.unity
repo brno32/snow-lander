@@ -187,7 +187,7 @@ Prefab:
         type: 2}
       propertyPath: difficultyDisplayText
       value: 
-      objectReference: {fileID: 1886189932}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1277f8950f984b54b9631811da8de39e, type: 2}
   m_IsPrefabParent: 0
@@ -421,6 +421,41 @@ Prefab:
     - target: {fileID: 1926713681237572, guid: 345ca6d0b535bb84ca192955d3fd5e1c, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224604762910735852, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224604762910735852, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224655064222047430, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224655064222047430, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224655064222047430, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114224352301538604, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 522404476}
+    - target: {fileID: 114224352301538604, guid: 345ca6d0b535bb84ca192955d3fd5e1c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RespondToSlider
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 345ca6d0b535bb84ca192955d3fd5e1c, type: 2}
@@ -1165,17 +1200,11 @@ Prefab:
     - target: {fileID: 114526633940976136, guid: 649fec791e8df2a4b80d8189b4aacaf0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToPause
+      value: ToggleSound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1886189932 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114043591210653950, guid: 649fec791e8df2a4b80d8189b4aacaf0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1886189931}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1886189933 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114884495106718938, guid: 649fec791e8df2a4b80d8189b4aacaf0,

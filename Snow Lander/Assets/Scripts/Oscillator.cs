@@ -4,6 +4,7 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 public class Oscillator : MonoBehaviour {
+
     private Vector3 startPosition;
 
     float currentTime = 0f;
@@ -23,9 +24,7 @@ public class Oscillator : MonoBehaviour {
 	void Update ()
     {
         currentTime = currentTime + Time.deltaTime;
-
         Vector3 offset = movementFactor * movementDirection * Mathf.Sin(angularSpeed * currentTime + periodOffset);
-
         transform.position = startPosition + offset;
     }
 }
