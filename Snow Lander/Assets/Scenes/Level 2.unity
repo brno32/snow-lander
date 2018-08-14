@@ -1132,6 +1132,10 @@ Prefab:
       propertyPath: sceneLoader
       value: 
       objectReference: {fileID: 12788764}
+    - target: {fileID: 1225413660018828, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}
   m_IsPrefabParent: 0
