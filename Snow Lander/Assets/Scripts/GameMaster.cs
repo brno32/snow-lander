@@ -22,6 +22,7 @@ public class GameMaster : MonoBehaviour {
         ChangeGameState(GameState.Alive);
         winMessage.SetActive(false);
 
+        // Don't count main menu as a level
         numOfLevels = SceneManager.sceneCountInBuildSettings - 1;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
 
@@ -52,6 +53,7 @@ public class GameMaster : MonoBehaviour {
                 break;
             case GameState.Win:
                 winMessage.SetActive(true);
+                // clear player's cached current level if finishing game
                 PlayerPrefs.SetInt("level", 100);
                 sceneLoader.BeginLoadingMainMenu();
                 break;

@@ -153,9 +153,8 @@ public class OptionsMenu : MonoBehaviour {
         {
             return;
         }
-
-        int currentNormalizedQaul = GetNormalizedQualityIndex();
-        switch (currentNormalizedQaul)
+        
+        switch (GetNormalizedQualityIndex())
         {
             case 0:
                 qualityDisplayText.text = low;

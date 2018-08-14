@@ -23,9 +23,7 @@ public class PauseMenu : MonoBehaviour, OptionsProtocol
 
     private void Update()
     {
-        if (GameMaster.currentGameState == GameMaster.GameState.Transcending ||
-            GameMaster.currentGameState == GameMaster.GameState.Dead ||
-            GameMaster.currentGameState == GameMaster.GameState.Win)
+        if ( IsTranscending() || IsDead() || IsWinning() )
         {
             return;
         }
@@ -60,7 +58,6 @@ public class PauseMenu : MonoBehaviour, OptionsProtocol
         }
     }
 
-    // Button
     void OptionsProtocol.LeaveOptionsMenu()
     {
         DisableOptions();
@@ -133,5 +130,20 @@ public class PauseMenu : MonoBehaviour, OptionsProtocol
         }
 
         pauseMenu.SetActive(false);
+    }
+
+    private bool IsDead()
+    {
+        return GameMaster.currentGameState == GameMaster.GameState.Dead;
+    }
+
+    private bool IsTranscending()
+    {
+        return GameMaster.currentGameState == GameMaster.GameState.Transcending;
+    }
+
+    private bool IsWinning()
+    {
+        return GameMaster.currentGameState == GameMaster.GameState.Win;
     }
 }
