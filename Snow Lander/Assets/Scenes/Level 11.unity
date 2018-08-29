@@ -671,6 +671,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5c0807fa5b5ff04fac181a5ede68c4b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1392864630 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1140630586015182, guid: b5c0807fa5b5ff04fac181a5ede68c4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1392864629}
 --- !u!1001 &1429166157
 Prefab:
   m_ObjectHideFlags: 0
@@ -1229,6 +1234,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleSound
       objectReference: {fileID: 0}
+    - target: {fileID: 114591736642146916, guid: 649fec791e8df2a4b80d8189b4aacaf0,
+        type: 2}
+      propertyPath: snowEffect
+      value: 
+      objectReference: {fileID: 1392864630}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 649fec791e8df2a4b80d8189b4aacaf0, type: 2}
   m_IsPrefabParent: 0

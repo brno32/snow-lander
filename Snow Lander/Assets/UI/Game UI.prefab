@@ -1384,6 +1384,7 @@ MonoBehaviour:
   soundPreferenceText: {fileID: 114786281997621532}
   mainMenu: {fileID: 0}
   pauseMenu: {fileID: 114172194490495952}
+  snowEffect: {fileID: 0}
 --- !u!114 &114658489461368910
 MonoBehaviour:
   m_ObjectHideFlags: 1

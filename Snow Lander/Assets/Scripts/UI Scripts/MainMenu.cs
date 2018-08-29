@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour, OptionsProtocol
         
         if (lastPlayedLevel == 100)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
             return;
         }
 
