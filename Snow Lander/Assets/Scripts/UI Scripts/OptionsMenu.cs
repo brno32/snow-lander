@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System;
 
 public interface OptionsProtocol {
     void LeaveOptionsMenu();
@@ -43,6 +39,8 @@ public class OptionsMenu : MonoBehaviour {
     // Delegate
     public PauseMenu pauseMenu;
     OptionsProtocol pauseMenuDelegate;
+
+    public GameObject snowEffect;
 
     private void Start()
     {
@@ -127,6 +125,19 @@ public class OptionsMenu : MonoBehaviour {
     {
         PlayerPrefs.SetInt("quality", GetNormalizedQualityIndex());
         QualitySettings.SetQualityLevel(GetNormalizedQualityIndex());
+
+        if (snowEffect != null)
+        {
+            if (QualitySettings.GetQualityLevel() == 0)
+            {
+                snowEffect.SetActive(false);
+            }
+            else
+            {
+                snowEffect.SetActive(true);
+            }
+        }
+
         SetQualityText();
     }
 
