@@ -53,7 +53,11 @@ public class OptionsMenu : MonoBehaviour {
         UpdateSound();
 
         mainMenuDelegate = mainMenu;
-        pauseMenuDelegate = pauseMenu;
+
+        if (pauseMenu != null)
+        {
+            pauseMenuDelegate = pauseMenu;
+        }
     }
 
     // Button
@@ -126,13 +130,16 @@ public class OptionsMenu : MonoBehaviour {
         PlayerPrefs.SetInt("quality", GetNormalizedQualityIndex());
         QualitySettings.SetQualityLevel(GetNormalizedQualityIndex());
 
-        if (QualitySettings.GetQualityLevel() == 0)
+        if (snowEffect != null)
         {
-            snowEffect.SetActive(false);
-        }
-        else
-        {
-            snowEffect.SetActive(true);
+            if (QualitySettings.GetQualityLevel() == 0)
+            {
+                snowEffect.SetActive(false);
+            }
+            else
+            {
+                snowEffect.SetActive(true);
+            }
         }
 
         SetQualityText();
